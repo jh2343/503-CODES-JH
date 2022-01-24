@@ -10,12 +10,13 @@ print(s)
 
 #DATES
 print("----------------------")
-dates = pd.date_range("20130101", periods=6)
+dates = pd.date_range("20130101", periods=4)
 print(dates)
 
 #DATA-FRAME (FROM NP ARRAY)
-np.random.seed(seed=123243)
-df = pd.DataFrame(np.random.randn(6, 4), index=dates, columns=list("ABCD"))
+# np.random.seed(seed=123243)
+values=np.array([[-2,0,1,2],[1,2,3,4],[5,6,7.,8],[9,10,11,12]])
+df = pd.DataFrame(values, index=dates, columns=list("ABCD"))
 print(list("ABCD"))
 
 #VIEWING DATA
@@ -38,18 +39,62 @@ print('------H------\n',df[0:3])									#SLICE BY ROWS
 print('------I------\n',df[0:3]["A"])
 print('------J------\n',df.loc[dates[0]])							#EXTRACT ROW FOR dates[0]
 print('------K------\n',df.loc[:, ["A", "B"]])						
-print('------L------\n',df.loc["20130102", ["A", "B"]])
-print('------M------\n',df.loc['20130102', "A"])					#RETURN A VALUE 
-print('------N------\n',df.at['20130102', "A"])						#RETURN A VALUE 
+print('------L------\n',df.loc["2013-01-02", ["A", "B"]])
+print('------M------\n',df.loc['2013-01-02', "A"])					#RETURN A VALUE 
 
 #SELECT BY INDEX VALUE "LOCATION" (SIMILAR TO NUMPY)
 print('------O------\n',df.iloc[3])								 
-print('------P------\n',df.iloc[3:5, 0:2])								 
-print('------Q------\n',df.iloc[[1, 2, 4], [0, 2]])
+print('------P------\n',df.iloc[1:2, 0:2])								 
+print('------Q------\n',df.iloc[[1, 2, 3], [0, 2]])
 print('------R------\n',df.iloc[1:3, :])
 print('------S------\n',df.iloc[1, 1])
 
 
+print("------BOOLEAN INDEXING------")
+print(df[df["A"] > 0])
+print('------------\n',df[df > 0])
+df2 = df.copy()
+df2["E"] = ["one", "two", "three", "four"]
+print('------------\n',df2)
+print('------------\n',df2[df2["E"].isin(["two", "four"])]) 		#SELECT VARIABLE IN LIST
+
+
+
+# print("------SETTING------")
+
+
+print("\n------MISSING DATA------")
+df1=df[df > -1]
+print(df1)
+#TO DROP ANY ROWS THAT HAVE MISSING DATA.
+tmp=df1.dropna(how="any")
+print('------------')
+print(tmp)
+tmp=df1.fillna(value=5)
+print('------------')
+print(tmp)
+print('------------')
+print(pd.isna(df1))		#BOOLEAN MASK
+
+# 
+
+#---------------
+# OPERATIONS
+#---------------
+print("\n------STATS------")
+print(df)
+print('------------')
+print(df.mean(0)) 	#axis=0 (down rowns)
+print('------------')
+print(df.mean(1)) 	#axis=1 (accross columns)
+
+
+print("\n------APPLY FUNCTIONS------")
+print(df)
+print('------------')
+print(df.apply(np.cumsum)) 	#CUMULATIVE SUM DOWN COLUMN
+print('------------')
+print(df.apply(lambda x: x.max() - x.min()))
 
 #DATA-FRAME (FROM NP DICTIONARY)
 # print("----------------------")
