@@ -32,11 +32,9 @@ print(mpg.sort_values(by=['avg'], ascending=False))
 #-----------------------------
 print("----CONVERT----")  
 #-----------------------------
-
 print(mpg.dtypes)
 mpg['manufacturer']=mpg.manufacturer.astype('category')
 mpg['model']=mpg.model.astype('string')
-
 print('--------')
 print(mpg.dtypes)
 

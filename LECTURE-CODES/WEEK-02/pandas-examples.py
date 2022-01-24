@@ -1,15 +1,50 @@
 #MODIFIED FROM: 
 #https://pandas.pydata.org/docs/reference/api/pandas.concat.html
 
-import pandas as pd
-import numpy  as np
+import pandas  as pd
+import numpy   as np
+import seaborn as sns
 
 #SPECIFY WHICH EXAMPLE TO RUN
-example="melting"
-example="np-reshaping"
-example="series-concat"
-example='dataframe-concat'
-example="joining-dataframes"
+example="melting-and-pivoting"
+# example="np-reshaping"
+# example="series-concat"
+# example='dataframe-concat'
+# example="joining-dataframes"
+# example="get-info"
+
+
+
+if(example=='get-info'):
+
+        df = sns.load_dataset("mpg")
+        #ERROR CHECK
+        if(str(type(df)) != "<class 'pandas.core.frame.DataFrame'>"):
+                raise ValueError("input variable is not panda DataFrame")
+
+        #GENERAL STUFF THAT IS
+        print("----------------------")
+        print("GENERAL:")
+        print("----------------------")
+        print(df.index)
+        print(df.columns)
+        print("number of rows:", len(df.index))
+        print("number of col:",  len(df.columns))
+        print("keys:",  df.keys(),type(df.keys()))
+        print("info",df.info() )
+        print("head", df.head())
+        print("TYPES", df.dtypes)
+
+        print("----------------------")
+        print("BASIC STATISTICS:")
+        print("----------------------")
+        print(df.describe())
+
+        print("----------------------")
+        print("CORRELATION MATRIX:")
+        print("----------------------")
+        print(df.corr())
+
 
 
 if(example=='np-reshaping'):
@@ -66,45 +101,56 @@ if(example=="dataframe-concat"):
     # print(pd.concat([df1, df2], join="inner"))
     # print(pd.concat([df1, df2], join="outer"))
 
-if(example=='melting'):
+if(example=='melting-and-pivoting'):
 
     #----------------------
     #CONSIDER A SURVEY
     #----------------------
     # with 3 participants (subject) 
     # and  2 measurements (HEIGHT,WEIGHT)=(H,W)
+    #print("----------",example,"----------")
 
-    print("----------",example,"----------")
-
-    print("-----------")
-    print("WIDE FORMAT")
-    print("-----------")
+    print("----WIDE FORMAT----")
     # ONE "OBSERVATION" IS ONE "PARTICIPANT"
 
-    df = pd.DataFrame(
+    df1 = pd.DataFrame(
         {'ID': {0: 'ID0', 1: 'ID1', 2: 'ID2'},
          'H' : {0: "H0" , 1: "H1" , 2: "H2"},
-         'W' : {0: "W0" , 1: "W1" , 2: "W2"},
+         'W' : {0: "W0" , 1: "W1" , 2: "W2"}  ,
          'A' : {0: "A0" , 1: "A1" , 2: "A2"}
          }
                        )
-    print(df)
-
-    print("-----------")
-    print("LONG FORMAT")
-    print("-----------")
+    print("----LONG FORMAT----")
     # ONE "OBSERVATION" IS ONE "MEASUREMENT" OF A PARTICIPANT
 
     #NEED TELL IT WHAT AN "OBSERVATION" (ID) IS
-    df=pd.melt(df, id_vars =['ID']) 
-    print(df)
+    df2=pd.melt(df1, id_vars =['ID']) 
+    print(df2)
+    print(pd.melt(df1, id_vars =['ID','H']))
+    print(pd.melt(df1, id_vars =['ID','H','W']))
+    # RENAME
+    # print(df.melt(id_vars=["ID"], var_name = 'var-name', value_name='VALUE'))
 
     #CONVERT BACK
-    print("-----------")
-    print("WIDE FORMAT")
-    print("-----------")
-    df=df.pivot(*df).rename_axis(columns = None).reset_index() 
-    print(df)
+    print("----WIDE FORMAT----")
+    df2=df2.pivot(*df2).rename_axis(columns = None).reset_index() 
+    print(df2)
+
+    print("----USING INDEX NOT ID----")
+    print(df1)
+    print(df1.index)
+    print(df1.columns)
+
+    df2.index=df1['ID']
+    df2=df2.drop(['ID'],axis=1)
+    print(df2)
+    print(df2.index)
+    print(df2.columns)    
+    print(pd.melt(df2))
+
+
+
+    # print(df2.pivot_table(index="ID",columns=['value'])) #.reset_index().rename_axis(None, axis=1))
 
 
 

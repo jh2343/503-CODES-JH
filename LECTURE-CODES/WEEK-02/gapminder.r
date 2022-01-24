@@ -20,3 +20,4 @@ gap %>% group_by(continent, year) %>% summarize(mean(lifeExp))
 
 print("----AVERAGE+MEDIAN EXPECTANCY BY YEAR----")
 gap %>% group_by(year) %>% summarize(means = mean(lifeExp), medians = median(lifeExp))
+
