@@ -78,7 +78,6 @@ if(example=='joining-dataframes'):
     # print('INNER: \n',df1.merge(df2, how='inner', left_on='x', right_on='x'))
 
 
-
 if(example=='apply'):
     #Apply a function along an axis of the DataFrame.
     df1 = pd.DataFrame([[1, 2], [3, 2]], columns=['A', 'B'])
