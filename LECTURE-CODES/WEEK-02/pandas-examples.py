@@ -12,7 +12,9 @@ example="melting-and-pivoting"
 # example='dataframe-concat'
 # example="joining-dataframes"
 # example="get-info"
-
+# example="lambda-functions"
+example="splitting"
+example="apply"
 
 
 if(example=='get-info'):
@@ -74,6 +76,96 @@ if(example=='joining-dataframes'):
     print('RIGHT JOIN: \n',df1.merge(df2, how='right'))
     print('OUTER JOIN: \n',df1.merge(df2, how='outer'))
     # print('INNER: \n',df1.merge(df2, how='inner', left_on='x', right_on='x'))
+
+
+
+if(example=='apply'):
+    #Apply a function along an axis of the DataFrame.
+    df1 = pd.DataFrame([[1, 2], [3, 2]], columns=['A', 'B'])
+    print(df1)
+    print("ADD\n",df1.apply(lambda x: x.A+x.B, axis=1))
+    df1=df1.apply(lambda x: [1, 2], axis=1)
+    print(df1)
+
+if(example=="lambda-functions"):
+    # https://www.w3schools.com/python/python_lambda.asp
+    # A lambda function is a small anonymous function.
+    # A lambda function can take any number of arguments, 
+    # but can only have one expression.
+
+    x = lambda a : a + 10
+    print("EX-1:",x(5))
+
+    x = lambda a, b : a * b
+    print("EX-2:",x(5, 6))
+
+    def myfunc(n):
+        return lambda a : a * n
+    mytripler = myfunc(3)
+    print("EX-3:",mytripler(11))
+
+
+if(example=="splitting"):
+
+    #---------------------------------
+    # SPLITTING STRINGS INTO MULTIPLE COLUMN  
+    #---------------------------------
+    df1 = pd.DataFrame([['m143'], ['f1232']], columns=['A'])
+    print("ORIGNIAL-0\n",df1)
+    #SPLITTING m143 --> m 143
+    #Series.str()-- >Vectorized string functions for Series and Index.
+    df1["MF"]  = df1.A.str[0]
+    df1["NUM"] = df1.A.str[0:]
+    df1=df1.drop('A',axis=1)                                 
+    print("MODIFIED-0\n",df1)
+
+    #---------------------------------
+    # SPLITTING A LIST STORED AS A STRING
+    #---------------------------------
+    # #Series.str()-- >Vectorized string functions for Series and Index.
+    df1 = pd.DataFrame([['[1, 2]','[3, 4]'], ['[NA, 6]','[7, 8]']], columns=['A', 'B'])
+    print("ORIGNIAL-1\n",df1)
+    df1[['A1','A2']] = pd.DataFrame(df1.A.str.replace('[','', regex=True).str.replace(']','', regex=True).str.split(',').tolist())
+    df1[['B1','B2']] = pd.DataFrame(df1.B.str.replace('[','', regex=True).str.replace(']','', regex=True).str.split(',').tolist())
+    df1=df1.drop(['A','B'],axis=1)                                 
+    print("MODIFIED-1\n",df1)
+
+    #---------------------------------
+    # # SPLITTING STRINGS INTO MULTIPLE COLUMNS (ALTERNATIVE METHOD)
+    #---------------------------------
+    # df1 = pd.DataFrame([['m143'], ['f1232']], columns=['A'])
+    # print("ORIGNIAL-0\n",df1)
+
+    # #SPLITTING m143 --> m 143
+    # df1 = df1.assign(                               # create new columns
+    #   MF    = lambda x: x.A.str[0].astype(str),
+    #   NUM   = lambda x: x.A.str[1:].astype(str)).drop('A', axis=1)                     # Remove old column
+    # print("MODIFIED-0\n",df1)
+
+    #---------------------------------
+    # #SPLITTING STRINGS INTO MULTIPLE COLUMN (ALTERNATIVE METHOD)
+    #---------------------------------
+    # df1 = pd.DataFrame([['m143'], ['f1232']], columns=['A'])
+    # print("ORIGNIAL-0\n",df1)
+
+    # #SPLITTING m143 --> m 143
+    # df1 = df1.assign(                          # create new columns
+    #   MF    = df1.A.str[0],
+    #   NUM   = df1.A.str[1:],
+    #                 ).drop('A', axis=1)        # Remove old column
+    # print("MODIFIED-0\n",df1)
+
+    #---------------------------------
+    # SPLITTING A LIST STORED AS A STRING (ALTERNATIVE METHOD)
+    #---------------------------------
+    # df1 = pd.DataFrame([['[1, 2]','[3, 4]'], ['[5, 6]','[7, 8]']], columns=['A', 'B'])
+    # print("ORIGNIAL-2\n",df1)
+    # df1['A']  = df1.apply(lambda x: x.A.replace('[','').replace(']','').split(','), axis=1)
+    # df1['B']  = df1.apply(lambda x: x.B.replace('[','').replace(']','').split(','), axis=1)
+    # df1[['A1','A2']] = pd.DataFrame(df1.A.tolist())
+    # df1[['B1','B2']] = pd.DataFrame(df1.B.tolist())
+    # df1=df1.drop(['A','B'],axis=1)
+    # print("MODIFIED-2\n",df1)
 
 
 if(example=="series-concat"):
