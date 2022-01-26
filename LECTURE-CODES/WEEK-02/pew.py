@@ -6,13 +6,14 @@ print("---------------")
 df1 = pd.read_csv('data/pew.csv')
 print(df1)
 
-print("---------------")
-df2 = df1.melt()
-print(df2[0:25])
+# INCORRECT PIVOTS ON INDEX NOT COLUMN
+# print("---------------")
+# df2 = df1.melt()
+# print(df2)
 
 print("---------------")
 df2 = df1.melt(id_vars=["religion"])
-print(df2[0:20])
+print(df2)
 
 print("---------------")
 df2 = df1.melt(id_vars=["religion"], var_name = 'income_groups', value_name='counts')

@@ -3,12 +3,13 @@
 library(tidyverse)
 
 pew <- read_csv('data/pew.csv')
-head(pew)
+print(pew)
 
 # WE NEED TO MELT THIS DATASET TO MAKE IT TIDY
-
 pew1 <- pew %>% pivot_longer(cols = c(-religion), names_to = 'income_groups', values_to = 'counts')
-head(pew1)
+print(pew1)
+
+
 
 # There is a difference in row-order between the R and Python solutions.
 # R sorts by the id variable(s), Python sorts on the column containing

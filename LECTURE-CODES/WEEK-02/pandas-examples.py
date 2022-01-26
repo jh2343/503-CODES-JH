@@ -14,7 +14,7 @@ example="melting-and-pivoting"
 # example="get-info"
 # example="lambda-functions"
 example="splitting"
-example="apply"
+# example="apply"
 
 
 if(example=='get-info'):
@@ -111,10 +111,11 @@ if(example=="splitting"):
     #---------------------------------
     df1 = pd.DataFrame([['m143'], ['f1232']], columns=['A'])
     print("ORIGNIAL-0\n",df1)
+    
     #SPLITTING m143 --> m 143
     #Series.str()-- >Vectorized string functions for Series and Index.
     df1["MF"]  = df1.A.str[0]
-    df1["NUM"] = df1.A.str[0:]
+    df1["NUM"] = df1.A.str[1:]
     df1=df1.drop('A',axis=1)                                 
     print("MODIFIED-0\n",df1)
 
@@ -124,6 +125,7 @@ if(example=="splitting"):
     # #Series.str()-- >Vectorized string functions for Series and Index.
     df1 = pd.DataFrame([['[1, 2]','[3, 4]'], ['[NA, 6]','[7, 8]']], columns=['A', 'B'])
     print("ORIGNIAL-1\n",df1)
+
     df1[['A1','A2']] = pd.DataFrame(df1.A.str.replace('[','', regex=True).str.replace(']','', regex=True).str.split(',').tolist())
     df1[['B1','B2']] = pd.DataFrame(df1.B.str.replace('[','', regex=True).str.replace(']','', regex=True).str.split(',').tolist())
     df1=df1.drop(['A','B'],axis=1)                                 
