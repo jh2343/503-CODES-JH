@@ -6,14 +6,14 @@ import numpy   as np
 import seaborn as sns
 
 #SPECIFY WHICH EXAMPLE TO RUN
-example="melting-and-pivoting"
+# example="melting-and-pivoting"
 # example="np-reshaping"
 # example="series-concat"
 # example='dataframe-concat'
-# example="joining-dataframes"
+example="joining-dataframes"
 # example="get-info"
 # example="lambda-functions"
-example="splitting"
+# example="splitting"
 # example="apply"
 
 
@@ -62,7 +62,7 @@ if(example=='np-reshaping'):
 
 if(example=='joining-dataframes'):
     print("----JOINING DATAFRAMES---")
-    df1 = pd.DataFrame([['x1', 'y1'], ['x2', 'y2'], ['x3', 'y3']], columns=['x', 'y'])
+    df1 = pd.DataFrame([['x1', 'y1','p1'], ['x2', 'y2','p2'], ['x3', 'y3','p3']], columns=['x', 'y','p'])
     df2 = pd.DataFrame([['x1', 'y1','w1', 'z1']
                       , ['x2','y2', 'w2', 'z2']
                       , ['x4','y4', 'w4', 'z4']],columns=['x', 'y','w', 'z'])
@@ -76,6 +76,7 @@ if(example=='joining-dataframes'):
     print('RIGHT JOIN: \n',df1.merge(df2, how='right'))
     print('OUTER JOIN: \n',df1.merge(df2, how='outer'))
     # print('INNER: \n',df1.merge(df2, how='inner', left_on='x', right_on='x'))
+
 
 
 if(example=='apply'):

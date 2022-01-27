@@ -12,6 +12,7 @@ df = pd.read_csv('input.csv')
 
 #SAVE CSV
 df.to_csv('output.csv') #, sep='\t')
+df.to_csv('output.csv',index=False) #dont write index 
 
 # MELTING
 pd.melt(df1, id_vars =['ID']) 
