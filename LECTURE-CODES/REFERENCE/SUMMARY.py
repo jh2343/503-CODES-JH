@@ -14,12 +14,21 @@ df = pd.read_csv('input.csv')
 df.to_csv('output.csv') #, sep='\t')
 df.to_csv('output.csv',index=False) #dont write index 
 
+#RENAME COLUMN
+df=df.rename(columns={"year_C": "year"})
+
 # MELTING
 pd.melt(df1, id_vars =['ID']) 
 pd.melt(df1, id_vars =['ID','H'])
 
 # BY REPEATING FIRST 5 COLUMNS 0,1,2,3,4
 df=pd.melt(df, id_vars =df.columns[0:5]); # print(df)
+
+#REPLACE NAN 
+dfA=dfA.fillna('False')
+
+dfA["A"]=dfA["A"].fillna(False)  #one column only
+
 
 
 # SPLITTING A LIST THAT IS STORED AS A STRING
@@ -67,8 +76,6 @@ df["A"]  = df.col1.str[0:2]
 #MAKE NEW ROW FROM BOOLEAN OPERATION ON ROW "B" 
 df['A'] = df['B'].apply(lambda x: True if ((x=="cat") | (x=="dog")) else False)
 
-
-
 # MUTATE 
 mpg['cty'] = mpg['cty'] * 1.609/3.7854 # mile/gallon --> km/l
 mpg['hwy'] = mpg['hwy'] * 1.609/3.7854
@@ -86,4 +93,21 @@ mpg[mpg.manufacturer=='audi']
 # CHANGE DATA TYPE 
 mpg['manufacturer']=mpg.manufacturer.astype('category')
 mpg['model']=mpg.model.astype('string')
+
+
+print("----GROUP BY CONTINENT----")
+print((df.groupby('continent')).head())
+# print('----\n',df.groupby('continent').tail())
+
+print("----AVERAGE LIFE EXPECTANCY BY CONTINENT----")
+print(df.groupby('continent')['lifeExp'].mean())
+
+print("----AVERAGE LIFE EXPECTANCY BY COUNTRY----")
+print(df.groupby('country')['lifeExp'].mean())
+
+print("----AVERAGE LIFE EXPECTANCY BY CONTINENT AND YEAR----")
+print(df.groupby(['continent','year'])['lifeExp'].mean())
+
+print("----AVERAGE+MEDIAN EXPECTANCY BY YEAR----")
+print(df.groupby('year')['lifeExp'].agg([np.mean,np.median]))
 
