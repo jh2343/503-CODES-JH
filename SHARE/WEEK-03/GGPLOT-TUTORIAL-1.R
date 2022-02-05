@@ -7,6 +7,9 @@
 #-------------------------------
 library(ggplot2)
 
+#CHANGE NAME OF OUTPUT FILE
+pdf(file="output-1.pdf")
+
 # turn off scientific notation like 1e+06
 options(scipen=999)
 
@@ -18,22 +21,30 @@ data("midwest", package = "ggplot2")  # load the data
 #EXPLORE DATA: DATA COMES IN AS A TIBBLE  
 print(midwest)
 
-
 #SELECT EXAMPLE (UNCOMMENT)
-example="blank-canvas"
-example="scatter-plot-1"
-example="scatter-plot-2"
-example="labels"
-example="linear-regression-line"
-example="axis-range-1"
-example="axis-range-2"
-example="size-and-color-1"
-example="size-and-color-2"
-example="fonts-and-tics-1"
 
+#RUN ALL
+examples_to_run=c(
+"blank-canvas-1","blank-canvas-2",
+"scatter-plot-1","scatter-plot-2",
+"labels","linear-regression-line",
+"axis-range-1", "axis-range-2",
+"size-and-color-1","size-and-color-2",
+"fonts-and-tics-1","theme"
+)
+
+#RUN ONE
+# examples_to_run=c("blank-canvas-1" )
 
 #--------EXAMPLE--------
-if (example=="blank-canvas") 
+if ("blank-canvas-1" %in% examples_to_run ) 
+{
+ g <- ggplot(midwest) 
+  plot(g)                                         #GENERATE PLOT
+}
+
+#--------EXAMPLE--------
+if ("blank-canvas-2" %in% examples_to_run ) 
 {
   # Init Ggplot
   # aes=Aesthetic mappings describe how variables in the data 
@@ -43,7 +54,7 @@ if (example=="blank-canvas")
 }
 
 #--------EXAMPLE--------
-if (example=="scatter-plot-1") 
+if ("scatter-plot-1" %in% examples_to_run ) 
 {
 	#SCATTER PLOT-1
 	# aes=Aesthetic mappings describe how variables in the data 
@@ -54,7 +65,7 @@ if (example=="scatter-plot-1")
 }
 
 #--------EXAMPLE--------
-if (example=="scatter-plot-2") 
+if ("scatter-plot-2" %in% examples_to_run )
 {
   #SCATTER PLOT-1 (ALT METHOD)
   g <- ggplot(midwest, aes(x=area, y=poptotal))   #TELL IT WHAT TO PLOT
@@ -64,24 +75,29 @@ if (example=="scatter-plot-2")
 
 
 #--------EXAMPLE--------
-if (example=="labels") 
+if ("labels" %in% examples_to_run ) 
 {
   #SCATTER PLOT-1 (ALT METHOD)
   g <- ggplot(midwest, aes(x=area, y=poptotal))   #TELL IT WHAT TO PLOT
-  g <- g+geom_point()                             #TELL IT TO DO SCATTER PLOT
+  g <- g+geom_point()+                             #TELL IT TO DO SCATTER PLOT
   labs(title="Area Vs Population",                   #SET LABELS
      subtitle="From midwest dataset",
      y="Population",
-     x="Area",
+     x="Area (square mile)",
      caption="Midwest Demographics")
   plot(g)                                         #GENERATE PLOT
 }
 
 #--------EXAMPLE--------
-if (example=="linear-regression-line") 
+if ("linear-regression-line" %in% examples_to_run ) 
 {
   g <- ggplot(midwest, aes(x=area, y=poptotal)) + #TELL IT WHAT TO PLOT
-  geom_point() +                                  #DO SCATTER PLOT
+  geom_point() +                             #TELL IT TO DO SCATTER PLOT
+  labs(title="Area Vs Population",                   #SET LABELS
+     subtitle="From midwest dataset",
+     y="Population",
+     x="Area (square mile)",
+     caption="Midwest Demographics") +                                  #DO SCATTER PLOT
   # set se=FALSE to turnoff confidence bands
   geom_smooth(method="lm")                        #ADD LINEAR BEST FIT LINE
   plot(g)                                         #GENERATE PLOT
@@ -89,7 +105,7 @@ if (example=="linear-regression-line")
 
 
 #--------EXAMPLE--------
-if (example=="axis-range-1") 
+if ("axis-range-1" %in% examples_to_run )
 {
   #ADJUST AXIS LIMITS: (METHOD-1: DELETING)
   #IMPORTANT NOTE: LIMITS EFFECT TRENDLINE (PLOTS OUTSIDE ARE EFFECTLY DELETED)
@@ -102,7 +118,7 @@ if (example=="axis-range-1")
 }
 
 #--------EXAMPLE--------
-if (example=="axis-range-2") 
+if ("axis-range-2" %in% examples_to_run ) 
 {
   #ADJUST AXIS LIMITS: (METHOD-2: ZOOMING)
   #DOESN"T EFFECT POINTS OUTSIDE LIMITS
@@ -124,7 +140,7 @@ if (example=="axis-range-2")
 
 
 #--------EXAMPLE--------
-if (example=="size-and-color-1") 
+if ("size-and-color-1" %in% examples_to_run )
 {
   #POINT SIZE AND COLOR
   g <- ggplot(midwest, aes(x=area, y=poptotal))+     #TELL IT WHAT TO PLOT
@@ -139,7 +155,7 @@ if (example=="size-and-color-1")
   plot(g)                                            #GENERATE PLOT
 }
 
-if (example=="size-and-color-2") 
+if ("size-and-color-2" %in% examples_to_run ) 
 {
 #COLOR BASED ON ANOTHER COLUMN
 # Not just color, but size, shape, stroke (thickness of boundary)
@@ -165,7 +181,7 @@ plot(g)                                            #GENERATE PLOT
 # library(RColorBrewer)
 # head(brewer.pal.info, 10)
 # 
-if (example=="fonts-and-tics-1")
+if ("fonts-and-tics-1" %in% examples_to_run )
 {
   #AXIS FONT AND TICS
   # Not just color, but size, shape, stroke (thickness of boundary)
@@ -176,7 +192,7 @@ if (example=="fonts-and-tics-1")
   # (Have formatted it as % in below example) * Method 2: Using a custom user defined
   # function. (Formatted 1000’s to 1K scale)
   dx <- 0.02
-  FS <- 8
+  FS <- 14
   g <- ggplot(midwest, aes(x=area, y=poptotal))+     #TELL IT WHAT TO PLOT
   geom_point(aes(col=state), size=3) +               #DO SCATTER PLOT
   #LEGEND ADDED AUTOMATICALLY
@@ -204,22 +220,30 @@ if (example=="fonts-and-tics-1")
   )
   
   plot(g)                                            #RENDER PLOT
+
+  # THEME ACCEPTS --> 
+  # element_text(): Since the title, subtitle and captions are textual items, element_text() function is used to set it.
+  # element_line(): Likewise element_line() is use to modify line based components such as the axis lines, major and minor grid lines, etc.
+  # element_rect(): Modifies rectangle components such as plot and panel background.
+  # element_blank(): Turns off displaying the theme item.
+
 }
 # 
 # #PRE-BUILT THEMES
 # ?theme_bw #HELP
-# 
-# gg <- ggplot(midwest, aes(x=area, y=poptotal)) + 
-# geom_point(aes(col=state), size=3) + # Set color to vary based on state categories.
-# geom_smooth(method="lm", col="firebrick", size=2) + 
-# coord_cartesian(xlim=c(0, 0.1), ylim=c(0, 1000000)) + 
-# labs(title="Area Vs Population", subtitle="From midwest
-# dataset", y="Population", x="Area", caption="Midwest
-# Demographics")
-# gg <- gg + scale_x_continuous(breaks=seq(0, 0.1, 0.01))
-# # method 1: Using theme_set() theme_set(theme_classic()) # not run gg
-# # method 2: Adding theme Layer itself.
-# gg + theme_bw() + labs(subtitle="BW Theme")
-# gg + theme_classic() + labs(subtitle="Classic Theme")
-# plot(gg)                                            #RENDER PLOT
-
+if ("theme" %in% examples_to_run )
+{
+gg <- ggplot(midwest, aes(x=area, y=poptotal)) + 
+geom_point(aes(col=state), size=3) + # Set color to vary based on state categories.
+geom_smooth(method="lm", col="firebrick", size=2) + 
+coord_cartesian(xlim=c(0, 0.1), ylim=c(0, 1000000)) + 
+labs(title="Area Vs Population", subtitle="From midwest
+dataset", y="Population", x="Area", caption="Midwest
+Demographics")
+gg <- gg + scale_x_continuous(breaks=seq(0, 0.1, 0.01))
+# method 1: Using theme_set() theme_set(theme_classic()) # not run gg
+# method 2: Adding theme Layer itself.
+gg + theme_bw() + labs(subtitle="BW Theme")
+gg + theme_classic() + labs(subtitle="Classic Theme")
+plot(gg)                                            #RENDER PLOT
+}
