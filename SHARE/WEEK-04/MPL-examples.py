@@ -6,7 +6,7 @@ import numpy as np
 
 
 #RUN ONE
-examples=['logscale']
+examples=['annimation-2']
 
 #RUN ALL
 # examples=[
@@ -14,10 +14,10 @@ examples=['logscale']
 # 'basic-2',
 # 'subplots-1',
 # 'customization-1',
-# 'logscale']
-
+# 'logscale',
+# 'sparklines-1',
+# 'sparklines-2',
 # 'small-multiples',
-# 'sparklines',
 # 'logscale']
 
 
@@ -175,14 +175,7 @@ if('logscale' in examples):
 	plt.show()
 
 
-
-
-
-
-
-
-
-if('sparklines' in examples):
+if('sparklines-1' in examples):
 	#https://stackoverflow.com/questions/27543605/creating-sparklines-using-matplotlib-in-python
 	import matplotlib.pyplot as plt
 	import numpy as np
@@ -225,23 +218,25 @@ if('sparklines' in examples):
 	plt.tight_layout()
 	plt.show()
 
-	# # create some random data
-	# x = np.cumsum(np.random.rand(1000)-0.5)
 
-	# # plot it
-	# fig, ax = plt.subplots(1,1,figsize=(10,3))
-	# plt.plot(x, color='k')
-	# plt.plot(len(x)-1, x[-1], color='r', marker='o')
+if('sparklines-2' in examples):
 
-	# # remove all the axes
-	# for k,v in ax.spines.items():
-	#     v.set_visible(False)
-	# ax.set_xticks([])
-	# ax.set_yticks([])
+	# create some random data
+	x = np.cumsum(np.random.rand(1000)-0.5)
 
-	# #show it
-	# plt.show()
+	# plot it
+	fig, ax = plt.subplots(1,1,figsize=(10,3))
+	plt.plot(x, color='k')
+	plt.plot(len(x)-1, x[-1], color='r', marker='o')
 
+	# remove all the axes
+	for k,v in ax.spines.items():
+	    v.set_visible(False)
+	ax.set_xticks([])
+	ax.set_yticks([])
+
+	#show it
+	plt.show()
 
 
 if('small-multiples' in examples):
@@ -301,15 +296,132 @@ if('small-multiples' in examples):
 	plt.show()
 
 
+if('3D-plot-1' in examples):
+
+	import matplotlib.pyplot as plt
+	import numpy as np
+
+	#3D 
+	from matplotlib import cm
+	from mpl_toolkits.mplot3d import Axes3D
+
+
+	def fun(x, y):
+		#print(x.shape)
+		#return np.sin(x)*np.sin(y)
+		return np.exp(-((x-1)/0.75)**2)*np.exp(-(y/1.5)**2)
+		#TODO: ADD MULTIVARIABLE GAUSSIAN WITH NON IDENTITY COVARIANCE MATRIX
+
+	#DEFINE FIGURE
+	fig = plt.figure(figsize=(15,15))
+	ax = fig.add_subplot(111, projection='3d')
+
+	#DEFINE MESH FOR PLOTING
+	# np.arange --> Return evenly spaced values within a given interval.
+	xbound=4; dx=0.2; x = np.arange(-xbound,xbound, dx)
+	ybound=4; dy=0.2; y = np.arange(-ybound,ybound, dy)
+
+	#MERGE ARRAYS INTO 2D MESH
+	#np.meshgrid Return coordinate matrices from coordinate vectors.
+	X, Y = np.meshgrid(x, y)
+
+	#TO BETTER UNDERSTAND MESH, SET dx=dy=2 AND UNCOMMENT
+	# print(x.shape,y.shape,X.shape,Y.shape)
+	# print(x,y)
+	# print(X)
+	# print(Y)
+
+	#CONVERT MESH MATRIX TO VECTOR AND EVALUTE FUNCTION ON MESH COMPONENT WISE
+	zs = np.array(fun(np.ravel(X), np.ravel(Y)))
+	Z = zs.reshape(X.shape) #RESHAPE TO MATCH ORIGINAL MESH
+
+	#3D PLOTS 
+	#ax.scatter(X, Y, Z+0.001, marker='o') # RAW DATA
+	# ax.contour3D(X, Y, Z, 50, cmap='binary') #CONTOUR
+
+	zshift=1 #shift for visulization
+
+	surf=ax.plot_surface(X, Y, Z+zshift, cmap=cm.coolwarm) #INTERPOLATED ONTO SMOOTH SURFACE AND APPLY COLOR MAP  
+	num_contour=5
+
+	#CONTOUR PROJECTIONS ON AXIS 
+	cset = ax.contourf(X, Y, Z+zshift, num_contour, zdir='z', offset=np.min(Z), cmap=cm.coolwarm)
+	cset = ax.contourf(X, Y, Z+zshift, zdir='x', offset=-xbound, cmap=cm.coolwarm)
+	cset = ax.contourf(X, Y, Z+zshift, zdir='y', offset=xbound, cmap=cm.coolwarm)
+	fig.colorbar(surf, ax=ax, shrink=0.5, aspect=5)
+
+	#AXIS RANGE
+	ax.set_zlim(0,np.max(Z)+1.5*zshift)
+
+
+	FS=18	#FONT SIZE
+	plt.xticks(fontsize=FS); plt.yticks(fontsize=FS);  
+
+	ax.set_xlabel('X', fontsize=FS)
+	ax.set_ylabel('Y', fontsize=FS)
+	ax.set_zlabel('Z', fontsize=FS)
+
+	plt.show()
+
+
+
+
+if('annimation-1' in examples):
+
+	import numpy as np
+	import matplotlib.pyplot as plt
+
+	#PARAMETERS
+	dt=0.01		#time to pause between frames in seconds 
+	x0=0.0; dx=0.1  #mesh parameters
+	Nframe=100 
+
+	plt.figure() #INITIALIZE FIGURE 
+	FS=18
+	plt.xlabel('Time (s)', fontsize=FS)
+	plt.ylabel('Amplitude (cm)', fontsize=FS)
+	for i in range(0,Nframe):
+		x=x0+i*dx; y=np.sin(x)
+		plt.plot(x,y,'bo')
+		plt.pause(dt)
+
+	plt.show()
 
 
 
 
 
+if('annimation-2' in examples):
 
+	import numpy as np
+	import matplotlib.pyplot as plt
+	import time
 
+	#PARAMETERS
+	dt=0.005		#time to pause between frames in seconds 
+	NP=100 
 
+	x = np.linspace(0,10,NP)
+	y = np.exp(-0.1*x)*np.sin(5*x)
 
+	plt.ion()  #Enable interactive mode.
+	fig,ax = plt.subplots(3,1,figsize=(15,15))
+	ax[0].plot(x,y,'-')
+	ax[1].plot(x,y,'-',)
+
+	plt.show()
+
+	for i in range(0,len(x)):
+
+		ax[0].clear()
+
+		ax[0].plot(x,y,'-'); ax[0].plot(x[i],y[i],'bo')
+		ax[1].plot(x[i],y[i],'ro')
+		ax[2].plot(x[i],y[i],'ro')
+
+		plt.draw()
+		plt.pause(dt)
+	exit()
 
 
 
