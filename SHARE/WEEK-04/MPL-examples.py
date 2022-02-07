@@ -128,40 +128,53 @@ if('customization-1' in examples):
 if('logscale' in examples):
 
 	#DEFINE DATA
-	x = np.linspace(0.1, 5,1000)
+	x = np.linspace(0.1, 100,1000)
 	y1  = 10**x
 	y2  = x
 	y3  = np.log10(x)
 
+	#DEFINE FIG+AX OBJECTS 
 	fig, axes = plt.subplots(2, 2)
 
 	#LINEAR SCALES
 	ax  = axes[0][0]
 	ax.set_yscale('linear')
 	ax.set_xscale('linear')
-	ax.plot(x,10**x,x,np.log10(x))
+	ax.set_xlim([0.1,10])
+	ax.set_ylim([0.1,10])
+	ax.set_aspect('equal')
+	ax.plot(x,y1,x,y2,x,y3)
 
+	#LOG SCALE ON X
+	#SIMILAR TO: y=f(x) --> f(log(x))
+	ax  = axes[0][1]
+	ax.set_yscale('log')
+	ax.set_xscale('linear')
+	ax.set_xlim([0,5])
+	ax.set_ylim([0.1,100])
+	ax.plot(x,y1,x,y2,x,y3)
 
-
-
-
+	#LOG SCALE ON Y
 	#SIMILAR TO: y=f(x) --> log(y) 
-	# ax.plot(x,np.log10(y1),'o'); plt.show(); 
-	# ax.set_yscale('log')
+	ax  = axes[1][0]
+	ax.set_yscale('linear')
+	ax.set_xscale('log')
+	ax.set_xlim([0.1,5])
+	ax.set_ylim([0.1,3])
+	ax.plot(x,y1,x,y2,x,y3)
 
-	#SIMILAR TO: y=f(log(x)) --> log(y) 
-	#ax.plot(np.log10(x),y1,'o'); plt.show(); exit()
-	# ax.set_xscale('log')
+	#LOG SCALE ON BOTH
+	ax  = axes[1][1]
+	ax.set_yscale('log')
+	ax.set_xscale('log')
+	ax.set_xlim([0.1,10])
+	ax.set_ylim([0.1,10])
+	ax.plot(x,y1,x,y2,x,y3)
 
-	# ax.plot(x,y1,'-')
+	#RENDER
 	plt.show()
 
 
-
-
-	#PLOT 
-	# fig, ax = plt.subplots()
-	#exit()
 
 
 
