@@ -6,15 +6,15 @@ import numpy as np
 
 
 #RUN ONE
-examples=['customization-1']
+examples=['logscale']
 
 #RUN ALL
 # examples=[
 # 'basic-1',
 # 'basic-2',
 # 'subplots-1',
-# 'customization-1']
-
+# 'customization-1',
+# 'logscale']
 
 # 'small-multiples',
 # 'sparklines',
@@ -69,8 +69,7 @@ if('subplots-1' in examples):
 	fig.tight_layout()
 	plt.show()
 
-
-#IMPORTANT MODIFICATIONS
+#CUSTOMIZATION
 if('customization-1' in examples):
 
 	#GENERATE DATA
@@ -126,23 +125,25 @@ if('customization-1' in examples):
 	plt.show()
 
 
-
-exit()
-
 if('logscale' in examples):
 
 	#DEFINE DATA
 	x = np.linspace(0.1, 5,1000)
 	y1  = 10**x
-	# y1  = x
-	# y1  = np.log10(x)
+	y2  = x
+	y3  = np.log10(x)
 
-	fig = plt.figure()
-	ax = fig.add_subplot(1, 1, 1)
+	fig, axes = plt.subplots(2, 2)
 
 	#LINEAR SCALES
-	# ax.set_yscale('linear')
-	# ax.set_xscale('linear')
+	ax  = axes[0][0]
+	ax.set_yscale('linear')
+	ax.set_xscale('linear')
+	ax.plot(x,10**x,x,np.log10(x))
+
+
+
+
 
 	#SIMILAR TO: y=f(x) --> log(y) 
 	# ax.plot(x,np.log10(y1),'o'); plt.show(); 
@@ -152,7 +153,7 @@ if('logscale' in examples):
 	#ax.plot(np.log10(x),y1,'o'); plt.show(); exit()
 	# ax.set_xscale('log')
 
-	ax.plot(x,y1,'-')
+	# ax.plot(x,y1,'-')
 	plt.show()
 
 
