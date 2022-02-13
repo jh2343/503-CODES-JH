@@ -40,7 +40,7 @@ examples_to_run=c(
 if ("blank-canvas-1" %in% examples_to_run ) 
 {
  g <- ggplot(midwest) 
-  plot(g)                                         #GENERATE PLOT
+ plot(g)                                         #GENERATE PLOT
 }
 
 #--------EXAMPLE--------

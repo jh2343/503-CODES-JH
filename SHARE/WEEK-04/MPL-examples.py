@@ -6,19 +6,19 @@ import numpy as np
 
 
 #RUN ONE
-examples=['annimation-2']
+# examples=['logscale']
 
 #RUN ALL
-# examples=[
-# 'basic-1',
-# 'basic-2',
-# 'subplots-1',
-# 'customization-1',
-# 'logscale',
-# 'sparklines-1',
-# 'sparklines-2',
-# 'small-multiples',
-# 'logscale']
+examples=[
+'basic-1',
+'basic-2',
+'subplots-1',
+'customization-1',
+'logscale',
+'sparklines-1',
+'sparklines-2',
+'small-multiples','3D-plot-1',
+'logscale','bar-1','annimation-1','annimation-2']
 
 
 ##SIMPLE STATIC 1D PLOT 
@@ -30,6 +30,7 @@ if('basic-1' in examples):
 	plt.xlabel('x', fontsize=FS)
 	plt.ylabel('y', fontsize=FS)
 	plt.show()
+	#exit()
 
 ##SIMPLE STATIC 1D PLOT 
 if('basic-2' in examples):
@@ -60,9 +61,10 @@ if('subplots-1' in examples):
 			#AXES (CELL) ATTRIBUTES
 			ax_ij = axes[row_num][col_num]
 			ax_ij.plot(np.random.rand(20))
-			ax_ij.set_title(f'Plot ({row_num+1}, {col_num+1})')
-			ax_ij.set_xlabel('x_'+str(row_num)+str(col_num), fontsize=14)
-			ax_ij.set_ylabel('x_'+str(row_num)+str(col_num), fontsize=14)
+			ax_ij.set_title(f'Plot ({row_num}, {col_num})')
+			ax_ij.set_xlabel('x', fontsize=14)
+			ax_ij.set_ylabel('y', fontsize=14)
+			# ax_ij.legend(fontsize=12)
 
 	#FIGURE ATTRIBUTES
 	fig.suptitle('Main title')
@@ -78,30 +80,31 @@ if('customization-1' in examples):
 	ye=x*x*np.sin(x) #exact
 	y=ye+np.random.normal(0, 200, N)	#add noise
 
-	#SPECIFY FONT SIZE
-	FS=14
+	#USER PARAM
+	FS=17
+
 
 	#DEFINE FIG+AX OBJECTS 
 	f, ax = plt.subplots()
 	#https://www.canva.com/colors/color-wheel/
-	ax.plot(x,y,'o',color='#FF0012', markersize=10, label='Data')
-	ax.plot(x,ye, color='#0012FF',linewidth=4, label='Ground truth')
-	ax.plot(x,ye,color='#12FF00', linewidth=1, linestyle='dashed')
+	ax.plot(x,y,'o',color='#FF0012', markersize=16, label='Data')
+	ax.plot(x,ye, color='#0012FF'  ,linewidth=6, label='Ground truth')
+	ax.plot(x,ye,color='#12FF00'   , linewidth=1, linestyle='dashed')
 
 	#SET LEGEND
-	ax.legend()
+	ax.legend(fontsize=FS)
 
 	#SET FIGURE SIZE
-	f.set_size_inches(10, 6)
+	f.set_size_inches(10, 10)
 
 	#FIGURE TITLE
-	f.suptitle('Decaying oscillations', fontsize=20)
+	f.suptitle('Decaying oscillations', fontsize=24)
 
 	#AXIS LABELS
 	ax.set_xlabel('Time (ps)', fontsize=FS)
 	ax.set_ylabel('Amplitude (cm)', fontsize=FS)
 
-	#X-Y PLOT RANGE
+	# #X-Y PLOT RANGE
 	ax.set_xlim([-40,0])
 	ax.set_ylim([-1750,1750])
 
@@ -110,7 +113,7 @@ if('customization-1' in examples):
 	ax.set_yticks([-2000,-1000,0,1000,2000],fontsize=20)
 
 	#CONTROL AXIS TICK FORMAT
-	ax.yaxis.set_major_formatter(plt.FormatStrFormatter('%4.0f'))
+	ax.yaxis.set_major_formatter(plt.FormatStrFormatter('%4.2f'))
 	ax.xaxis.set_major_formatter(plt.FormatStrFormatter('%.1f'))
 
 	#AXIS TIC FONT SIZE
@@ -120,6 +123,7 @@ if('customization-1' in examples):
 	#SAVE IMAGES
 	f.savefig('plot-1.png', bbox_inches='tight')
 	f.savefig("plot-1.pdf", bbox_inches='tight')
+	f.savefig("plot-1.eps", bbox_inches='tight')
 
 	#RENDER AND SHOW IMAGE
 	plt.show()
@@ -157,8 +161,8 @@ if('logscale' in examples):
 	#LOG SCALE ON Y
 	#SIMILAR TO: y=f(x) --> log(y) 
 	ax  = axes[1][0]
-	ax.set_yscale('linear')
 	ax.set_xscale('log')
+	ax.set_yscale('linear')
 	ax.set_xlim([0.1,5])
 	ax.set_ylim([0.1,3])
 	ax.plot(x,y1,x,y2,x,y3)
@@ -200,7 +204,6 @@ if('sparklines-1' in examples):
 	ax4 = fig.add_subplot(414, sharex=ax1) # bottom sparkline
 	ax4.plot(data, 'r-')
 	ax4.axhline(c='grey', alpha=0.5)
-
 
 	for axes in [ax1, ax2, ax3, ax4]: # remove all borders
 	    plt.setp(axes.get_xticklabels(), visible=False)
@@ -364,8 +367,6 @@ if('3D-plot-1' in examples):
 	plt.show()
 
 
-
-
 if('annimation-1' in examples):
 
 	import numpy as np
@@ -389,6 +390,30 @@ if('annimation-1' in examples):
 
 
 
+
+if('bar-1' in examples):
+
+	import matplotlib.pyplot as plt
+
+
+	labels = ['G1', 'G2', 'G3', 'G4', 'G5']
+	men_means = [20, 35, 30, 35, 27]
+	women_means = [25, 32, 34, 20, 25]
+	men_std = [2, 3, 4, 1, 2]
+	women_std = [3, 5, 2, 3, 3]
+	width = 0.35       # the width of the bars: can also be len(x) sequence
+
+	fig, ax = plt.subplots()
+
+	ax.bar(labels, men_means, width, yerr=men_std, label='Men')
+	ax.bar(labels, women_means, width, yerr=women_std, bottom=men_means,
+	       label='Women')
+
+	ax.set_ylabel('Scores')
+	ax.set_title('Scores by group and gender')
+	ax.legend()
+
+	plt.show()
 
 
 if('annimation-2' in examples):
