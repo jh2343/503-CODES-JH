@@ -60,9 +60,7 @@ f=sns.pairplot(df, diag_kind='kde', kind="hist", hue=HUE)  # SLOWER
 # plt.show()
 # f.fig.suptitle('MPG DATASET', fontsize=24)
 #USE THE SEABORN.SET() FUNCTION TO SET FONT SIZE IN SEABORN PLOT
-
 pp.savefig(f.fig)
-
 
 pp.close()
 
@@ -91,7 +89,6 @@ def pd_general_plots(df,HUE=None):
 	sns.heatmap(corr, mask=mask, cmap=cmap, vmax=.3, center=0,
 	            square=True, linewidths=.5, cbar_kws={"shrink": .5})
 	plt.show()
-
 
 	#-------------------------
 	#DENSITY PLOT PROJECTED ONTO FIRST COL

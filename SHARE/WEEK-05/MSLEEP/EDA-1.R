@@ -56,9 +56,9 @@ print("SELECT COLUMN(S):")
 print(df$name)
 print(df[,1])
 select(df,vore)
-df %>%select(vore)
-df %>%select(vore,order)
-df %>%select(c(vore,order,conservation))
+df %>% select(vore)
+df %>% select(vore,order)
+df %>% select(c(vore,order,conservation))
 
 
 print("CHANGE COLUMN TO FACTOR:")

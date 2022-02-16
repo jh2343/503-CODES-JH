@@ -38,7 +38,9 @@ df1 %>% select(where(is.numeric)) %>%
   facet_wrap(~Variable, scales='free')
 
 #SMOOTH HISTOGRAM PLOT (KDE)
-ggplot(df, aes(sleep_total))+geom_density() + facet_wrap(~vore)
+ggplot(df, aes(sleep_total))
++geom_density() 
++facet_wrap(~vore)
 
 #BIVARIATE GRAPH
 ggplot(df, aes(x = bodywt, y = sleep_rem))+
