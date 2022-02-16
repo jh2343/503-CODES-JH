@@ -5,7 +5,7 @@ import numpy    as np
 
 # LIST OF POSSIBLE EXAMPLES 
 # example = 'basic'
-example = 'theme'
+example =  'theme'
 # example = "tips"
 # example = 'dots'
 # example = 'fmri'
