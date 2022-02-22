@@ -36,6 +36,7 @@ print("CORRELATION MATRIX:")
 print("----------------------")
 print(df.corr())
 
+# exit()
 #--------------------------------
 #EXPLORE THE DATASET VISUALLY 
 #--------------------------------

@@ -3,13 +3,15 @@ import seaborn  as sns
 import pandas   as pd
 import numpy    as np
 
+print(sns.__version__)
+
 # LIST OF POSSIBLE EXAMPLES 
 # example = 'basic'
-example =  'theme'
+# example =  'theme'
 # example = "tips"
 # example = 'dots'
 # example = 'fmri'
-# example = 'penquins'
+example = 'penquins'
 
 # EXAMPLE
 if "basic" == example:
@@ -83,7 +85,7 @@ if "tips" == example:
     # LOAD AN EXAMPLE DATASET
     df = sns.load_dataset("tips")
     print(df)
-
+    
     # RELPLOT
     # This function provides access to several different
     # axes-level functions that show the relationship between
@@ -177,7 +179,7 @@ if "dots" == example:
         hue="choice",
         size="coherence",
         style="choice",
-        facet_kws=dict(sharex=False),
+        #facet_kws=dict(sharex=False),
     )
     plt.show()
 
@@ -207,7 +209,8 @@ if "penquins" == example:
 
     # COMPOSITE VIEWS ONTO MULTIVARIATE DATASETS
     df = sns.load_dataset("penguins")
-    print(df)
+    print(df.columns,df.shape)
+    exit()
     print(df.describe())
 
     #INDIVIDUAL PAIR PLOT 
