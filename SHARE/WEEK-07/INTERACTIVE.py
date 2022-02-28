@@ -548,6 +548,8 @@ if example == "PLOTLY:SLIDER":
     import seaborn as sns
 
     gap = px.data.gapminder()
+    print(gap)
+    
     fig = px.scatter(
         gap,
         x="gdpPercap",
