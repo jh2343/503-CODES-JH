@@ -19,6 +19,51 @@ example="joining-dataframes"
 
 
 
+import pandas as pd
+
+
+# YEAR
+df = pd.DataFrame(
+    [
+        [1, "210298", "022198", "980221", "19980221"],
+        [2, "190399", "031999", "990319", "19990319"],
+    ]
+)
+print(df)
+df[4] = pd.to_datetime(df[4])
+df[3] = pd.to_datetime(df[3])
+df[2] = pd.to_datetime(df[2])
+df[1] = pd.to_datetime(df[1])
+print(df)
+
+# AVERAGING
+df = pd.DataFrame(
+    [
+        ["pos", "M", 1],
+        ["pos", "M", 2],
+        ["neg", "M", 3],
+        ["neg", "M", 4],
+        ["sev", "M", 6],
+        ["sev", "M", 7],
+        ["pos", "F", 8],
+        ["pos", "F", 9],
+        ["neg", "F", 10],
+        ["neg", "F", 11],
+        ["sev", "F", 12],
+        ["sev", "F", 13],
+    ]
+)
+df=df.rename(columns={0: "thrombosis", 1: "sex", 2: "num"})
+
+#RANDOMIZE ROWS
+# df=df.sample(frac=1).reset_index(drop=True) 
+print(df)
+
+print(df.groupby(['sex','thrombosis'])['num'].sum().reset_index())
+
+
+
+
 #SPLIT BY COMMA THEN EXPAND THEN CONCAT
 df=pd.concat([df, df['Diagnosis'].str.split(', ', expand=True)], axis=1)
 
