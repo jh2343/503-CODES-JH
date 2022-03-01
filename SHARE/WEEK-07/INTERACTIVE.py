@@ -20,6 +20,7 @@ example = ""
 # example = "PLOTLY:TREEMAP"
 # example = "PLOTLY:SLIDER"
 # example = "PLOTLY:MPL_CONVERSION-1"
+# example = "PLOTLY:3D"
 
 # ALTAIR
 # conda install -c conda-forge altair vega_datasets
@@ -84,6 +85,7 @@ if example == "PLOTLY:SCATTERPLOT-1":
     import seaborn as sns
 
     penguins = sns.load_dataset("penguins")
+
     fig = px.scatter(
         data_frame=penguins,
         x="bill_length_mm",
@@ -117,6 +119,7 @@ if example == "PLOTLY:THEMES":
 
     df = px.data.gapminder()
     print(df)
+    # exit()
     df_2007 = df.query("year==2007")
 
     for template in [
@@ -343,6 +346,7 @@ if example == "PLOTLY:HISTOGRAMS":
         tips,
         x="total_bill",
         color="sex",
+        histnorm="probability density",
         labels={"total_bill": "Total bill"},
         width=400,
         height=400,
@@ -549,13 +553,13 @@ if example == "PLOTLY:SLIDER":
 
     gap = px.data.gapminder()
     print(gap)
-    
+
     fig = px.scatter(
         gap,
         x="gdpPercap",
         y="lifeExp",
         animation_frame="year",  # <<
-        animation_group="country",  # <<
+        # animation_group="country",  # <<
         size="pop",
         color="continent",
         hover_name="country",
@@ -563,6 +567,65 @@ if example == "PLOTLY:SLIDER":
         size_max=55,
         range_x=[100, 100000],
         range_y=[25, 90],
+    )
+    fig.show()
+
+
+# example = "PLOTLY:3D"
+if example == "PLOTLY:3D":
+
+    # SOURCE: https://towardsdatascience.com/cheat-codes-to-better-
+    # visualisations-with-plotly-express-21caece3db01
+
+    import plotly.express as px
+    import seaborn as sns
+
+    election = px.data.election()
+
+    fig = px.scatter_3d(
+        election,  # dataframe
+        x="Joly",  # x-values column
+        y="Coderre",  # y-values column
+        z="Bergeron",  # z-values column
+        color="winner",  # column shown by color
+        size="total",  # column shown by size
+        hover_name="district",  # hover title
+        symbol="result",  # column shown by shape
+        color_discrete_map={"Joly": "blue", "Bergeron": "green", "Coderre": "red"},
+    )
+    # specific colors for x,y,z values            )
+    fig.show()
+
+
+example = "PLOTLY:GEO"
+if example == "PLOTLY:GEO":
+
+    import plotly.express as px
+    import seaborn as sns
+    
+    # SOURCE: https://towardsdatascience.com/cheat-codes-to-better-
+    # visualisations-with-plotly-express-21caece3db01
+
+    gapminder = px.data.gapminder()
+
+    fig = px.scatter_geo(
+        gapminder,  # dataframe
+        locations="iso_alpha",  # location code
+        color="continent",  # column shown by color
+        hover_name="country",  # hover info title
+        size="pop",  # column shown by size
+        animation_frame="year",  # column animated
+        projection="orthographic",  # type of map
+    )
+    fig.show()
+
+    fig = px.choropleth(
+        gapminder,  # dataframe
+        locations="iso_alpha",  # location code
+        color="lifeExp",  # column shown by color
+        hover_name="country",  # hover info title
+        animation_frame="year",  # column animated
+        range_color=[20, 80],  # color range
     )
     fig.show()
 
@@ -599,7 +662,7 @@ if example == "ALTAIR:LINECHART":
     from vega_datasets import data
 
     source = data.driving()
-
+    print(source)
     fig = (
         alt.Chart(source)
         .mark_line(point=True)
@@ -771,7 +834,7 @@ if example == "ALTAIR:MPG":
     fig.save("ALTAIR-8.html")
 
 
-# example = "ALTAIR:MPG-2"
+example = "ALTAIR:MPG-2"
 if example == "ALTAIR:MPG-2":
     # https://altair-viz.github.io/gallery/dot_dash_plot.html
     import altair as alt

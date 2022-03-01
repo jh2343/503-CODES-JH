@@ -6,12 +6,11 @@
 
 
 #PLOTLY 
-example='PLOTLY:SCATTERPLOT'
-example='PLOTLY:LINEPLOT'
+# example='PLOTLY:SCATTERPLOT'
+# example='PLOTLY:LINEPLOT'
 
-example='SHINY:BASIC'
+# example='SHINY:BASIC'
 example='SHINY:NORMAL_DISTRIBUTION'
-
 
 if (example=="SHINY:BASIC") 
 {
