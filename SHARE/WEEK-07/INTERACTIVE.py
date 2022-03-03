@@ -76,12 +76,15 @@ if example == "PLOTLY:MPL_CONVERSION-1":
     plotly_fig.update_layout(template="plotly_white")
 
     # SAVE
-    plotly.offline.plot(plotly_fig, filename="PLOTLY.html")
+    plotly_fig.show()
+
+    # plotly.offline.plot(plotly_fig, filename="PLOTLY.html")
 
 
 # example = "PLOTLY:SCATTERPLOT-1"
 if example == "PLOTLY:SCATTERPLOT-1":
     import plotly.express as px
+
     import seaborn as sns
 
     penguins = sns.load_dataset("penguins")
@@ -105,6 +108,7 @@ if example == "PLOTLY:SCATTERPLOT-2":
         data_frame=penguins,
         x="bill_length_mm",
         y="body_mass_g",
+        # color="body_mass_g",
         color="species",
         template="plotly_white",
     )
@@ -118,9 +122,10 @@ if example == "PLOTLY:THEMES":
     import plotly.express as px
 
     df = px.data.gapminder()
-    print(df)
-    # exit()
+    # print((df))
     df_2007 = df.query("year==2007")
+    # print(type(df_2007))
+    # exit()
 
     for template in [
         "plotly",
@@ -135,15 +140,23 @@ if example == "PLOTLY:THEMES":
             df_2007,
             x="gdpPercap",
             y="lifeExp",
-            size="pop",
+            size=df_2007["pop"] ,
             color="continent",
             log_x=True,
             size_max=60,
             template=template,
             title="Gapminder 2007: '%s' theme" % template,
         )
-        fig.show()
+  
+        # fig.update_traces(
+        #     marker=dict(
+        #         # sizemode='diameter',
+        #         sizemode="area",
+        #     )
+        # )
 
+        fig.show()
+        #exit()
 
 # example = "PLOTLY:SCATTERPLOT-3"
 if example == "PLOTLY:SCATTERPLOT-3":
@@ -225,7 +238,8 @@ if example == "PLOTLY:LINEPLOT-1":
 # example = "PLOTLY:FACETS"
 if example == "PLOTLY:FACETS":
     import plotly.express as px
-    import seaborn as sns
+
+    # import seaborn as sns
 
     gap = px.data.gapminder()
 
@@ -235,10 +249,11 @@ if example == "PLOTLY:FACETS":
         y="lifeExp",
         color="country",
         facet_col="continent",
+        # line_group="country",
         facet_col_wrap=3,  # << facet_col is the key
         labels={"lifeExp": "Life expectancy"},
         width=1000,
-        height=400,
+        height=1000,
     ).update_layout(showlegend=False)
     fig.show()
     # fig.write_html("PLOTLY.html")
@@ -247,7 +262,8 @@ if example == "PLOTLY:FACETS":
 # example = "PLOTLY:BARGRAPHS"
 if example == "PLOTLY:BARGRAPHS":
     import plotly.express as px
-    import seaborn as sns
+
+    # import seaborn as sns
 
     tips = px.data.tips()
     print(tips)
@@ -284,15 +300,16 @@ if example == "PLOTLY:BARGRAPHS":
     fig = px.bar(
         tips,
         x="day",
+        barmode="group",
         y="total_bill",
         color="smoker",
-        barmode="group",
         category_orders={"day": ["Thur", "Fri", "Sat", "Sun"]},
         width=500,
         height=500,
         labels={"day": "Day", "total_bill": "Total bill"},
     )
     fig.show()
+    # exit()
     # fig.write_html("PLOTLY.html")
 
     # ADD FACITING GROUPING VARIABLE
@@ -319,6 +336,8 @@ if example == "PLOTLY:BARGRAPHS":
     )
     # fig.write_html("PLOTLY.html")
     fig.show()
+# exit()
+
 
 # example = "PLOTLY:HISTOGRAMS"
 if example == "PLOTLY:HISTOGRAMS":
@@ -353,14 +372,18 @@ if example == "PLOTLY:HISTOGRAMS":
     )
     fig.show()
 
+    # # GROUPED HISTOGRAM
     fig = px.histogram(
         tips,
         x="total_bill",
         color="sex",
+        facet_col="day",
+        nbins=10,
+        marginal="rug",  # or 'rug' or 'violin'
+        # histnorm="probability density",
         labels={"total_bill": "Total bill"},
-        marginal="box",  # or 'rug' or 'violin'
-        width=500,
-        height=500,
+        width=2000,
+        height=1000,
     )
     fig.show()
 
@@ -450,8 +473,8 @@ if example == "PLOTLY:MARGINAL":
         marginal_y="violin",
         labels=dict(total_bill="Total bill", tip="Tip"),
         title="Tips vs Total bill",
-        width=400,
-        height=400,
+        width=1000,
+        height=1000,
     )
     fig.show()
 
@@ -466,8 +489,8 @@ if example == "PLOTLY:MARGINAL":
         nbinsy=50,
         labels=dict(total_bill="Total bill", tip="Tip"),
         title="Joint distribution of tip and total bill",
-        width=400,
-        height=400,
+        width=1000,
+        height=1000,
     )
 
     fig.show()
@@ -545,7 +568,7 @@ if example == "PLOTLY:TREEMAP":
     )
     fig.show()
 
-# example = "PLOTLY:SLIDER"
+example = "PLOTLY:SLIDER"
 if example == "PLOTLY:SLIDER":
 
     import plotly.express as px
@@ -559,7 +582,7 @@ if example == "PLOTLY:SLIDER":
         x="gdpPercap",
         y="lifeExp",
         animation_frame="year",  # <<
-        # animation_group="country",  # <<
+        animation_group="country",  # <<
         size="pop",
         color="continent",
         hover_name="country",
@@ -584,7 +607,7 @@ if example == "PLOTLY:3D":
 
     fig = px.scatter_3d(
         election,  # dataframe
-        x="Joly",  # x-values column
+        # x="Joly",  # x-values column
         y="Coderre",  # y-values column
         z="Bergeron",  # z-values column
         color="winner",  # column shown by color
@@ -602,7 +625,7 @@ if example == "PLOTLY:GEO":
 
     import plotly.express as px
     import seaborn as sns
-    
+
     # SOURCE: https://towardsdatascience.com/cheat-codes-to-better-
     # visualisations-with-plotly-express-21caece3db01
 
@@ -834,7 +857,7 @@ if example == "ALTAIR:MPG":
     fig.save("ALTAIR-8.html")
 
 
-example = "ALTAIR:MPG-2"
+# example = "ALTAIR:MPG-2"
 if example == "ALTAIR:MPG-2":
     # https://altair-viz.github.io/gallery/dot_dash_plot.html
     import altair as alt
