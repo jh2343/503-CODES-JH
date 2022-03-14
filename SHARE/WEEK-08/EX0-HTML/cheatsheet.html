@@ -1,0 +1,134 @@
+ <!-- MODIFIED FROM: https://www.codecademy.com/learn/learn-html/modules/learn-html-elements/cheatsheet -->
+
+
+<!-- DOCTYPE:  instruction to the browser about what type of document to expect and which version of HTML (HyperText Markup Language) is being used, in this case it’s HTML5. -->
+
+<!DOCTYPE html>
+<html>
+
+	<!-- HTML is organized into a family tree structure. HTML elements can have parents, grandparents, siblings, children, grandchildren, etc. -->
+
+
+	<!-- The <head> element contains general information about an HTML page that isn’t displayed on the page itself. This information is called metadata and includes things like the title of the HTML document and links to stylesheets. -->
+
+	<head>
+		<title>HTML Cheatsheet</title>
+	</head>
+
+
+	<!-- The <body> element represents the content of an HTML document. Content inside <body> tags are rendered on the web browsers. Note: There can be only one <body> element in a document. -->
+
+	<body>
+		<!-- The <div> element is used as a container that divides an HTML document into sections and is short for “division”. <div> elements can contain flow content such as headings, paragraphs, links, images, etc -->
+
+	  <div id="id-of-element-to-link-to">
+	  	<!-- HTML can use six different levels of heading elements. The heading elements are ordered from the highest level <h1> to the lowest level <h6>. -->
+
+	  	<!-- ID: specific and unique id attributes can be assigned to different elements in order to differentiate between them. -->
+	  	<!-- should begin with a letter and should only contain letters (a-Z), digits (0-9), hyphens (-), underscores (_), and periods (.). -->
+	    <h1  id="C1">Chapter-1:</h1>
+
+
+	    <!-- HTML attributes are values added to the opening tag of an element to configure the element or change the element’s default behavior. -->
+		<p id="my-paragraph" style="color: green;">Here’s some text for a paragraph that is being altered by HTML attributes</p>
+
+		 
+		<!-- The whitespace created by this line, and above/below this line is ignored by the browser-->
+		 
+		<!-- The <p> paragraph element contains and displays a block of text. -->
+		<p>Another test paragraph, this will sit right under the first paragraph, no extra space between. <br> newline example</p>
+
+		<!-- The <br> line break element will create a line break in text -->
+
+		A line break haiku.<br>
+		Poems are a great use case.<br>
+		Oh joy! A line break.
+
+		<!-- The <span> element is an inline container for text and can be used to group text for styling purposes. -->
+		<p><span>This text</span> may be styled differently than the surrounding text.</p>
+
+	    <h2>Section-1.1:</h2>
+
+	    <!-- The <em> emphasis element emphasizes text and browsers will usually italicize the emphasized text by default. -->
+		<p>This <em>word</em> will be emphasized in italics.</p>
+
+		<!-- The <strong> element highlights important, serious, or urgent text and browsers will normally render this highlighted text in bold by default. -->
+		<p>This is <strong>important</strong> text!</p>
+
+
+		<!-- The <ol> ordered list element creates a list of items in sequential order. Each list item appears numbered by default -->.
+		<ol>
+		  <li>Head east on Prince St</li>
+		  <li>Turn left on Elizabeth</li>
+		</ol>
+		 
+		<!-- The <ul> unordered list element is used to create a list of items in no particular order. Each individual list item will have a bullet point by default. -->
+		<ul>
+		  <li>Cookies</li>
+		  <li>Milk</li>
+		</ul>
+
+	   	<h3>Section-1.1.1:</h3>
+
+		<img src="luna.png" alt="The dog Luna" style="width:250px;height:250px;"><br>
+
+
+		<!-- The <a> anchor element is used to create hyperlinks in an HTML document. The hyperlinks can point to other webpages, files on the same server, a location on the same page, or any other URL via the hyperlink reference attribute, href. The href determines the location the anchor element points to. -->
+
+		<!-- Creating text links -->
+		<a href="http://www.codecademy.com">Visit this site</a><br>
+		 
+		<!-- Creating image links -->
+		<a href="http://www.codecademy.com">
+		    <img src="logo.jpg">Click this image
+		</a> <br>
+
+
+	   	<video src="luna.MOV" controls>
+		  Video not supported
+		</video><br>
+
+
+		<!-- The target attribute on an <a> anchor element specifies where a hyperlink should be opened. -->
+		<a href="https://www.google.com" target="_blank">This anchor element links to google and will open in a new tab or window.</a>
+
+
+	  </div>
+
+	  <div>
+	  <h1>Chapter-2</h1>
+	  <p>Here’s some text</p>
+
+
+
+	<!-- The anchor element <a> can create hyperlinks to different parts of the same HTML document using the href attribute to point to the desired location with # followed by the id of the element to link to. -->
+	 
+	<a href="#id-of-element-to-link-to">Take me to a different part of the page</a>
+
+
+
+	<table>
+	 <thead>
+	   <tr>
+	     <th>heading 1</th>
+	     <th>heading 2</th>
+	   </tr>
+	 </thead>
+	 <tbody>
+	   <tr>
+	     <td>col 1</td>
+	     <td>col 2</td>
+	   </tr>
+	 </tbody>
+	</table>
+
+
+	</div>
+
+
+	</body>
+
+
+
+</html>
+
