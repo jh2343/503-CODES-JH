@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset="UTF-8">
+
+    <!-- IMPORT LIBRARY FOR LATEX -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script type="text/javascript"
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+</head>
+
+<body>
+
+<h1>Numerical integration example</h1>
+
+
+</head>
+
+<body>
+<h2>Theory:</h2>
+
+Integrand:    $\,\,\,\ f(x) = 3x^2+4x $  <br> <br>
+
+<strong>Exact solution</strong> <br> <br>
+Indefinite integral:    $\,\,\,\ F(x)=\int 3x^2+4x \,dx = x^3+2x^2+C$  <br><br>
+Definite integral:    $\,\,\,\  I=\int_A^B 3x^2+4x \,dx = F(B)-F(A)=\left(B^3+2B^2\right)-\left(A^3+2A^2\right) $ <br> <br>
+
+<strong>Approximation solution ( N = number of rectangles )</strong> <br> <br>
+
+Left hand  :  $  \,\,\,\,\,I \approx \sum_{i=0}^{N-1} f(x_i) \Delta x  \,\,\,\,\,\,\, x_i=A+i\Delta x $ <br><br>
+Right hand :  $  \,\, I \approx \sum_{i=1}^{N} f(x_i) \Delta x$ <br>
+
+<h3>User inputs: </h3>
+
+<p>
+
+  <strong>Enter numbers:</strong>   <br><br>
+
+  Integration limits:<br>
+  A: <input type="text" id="A"  value="0">   <br>
+
+  B: <input type="text" id="B" value="2">  <br> <br>
+
+  N: <input type="text" id="N" value="100">  <br> <br>
+
+<!-- DROP DOWN BOX -->
+<form action="/action_page.php">
+    <label for="method">Choose algorithm:</label>
+    <select name="method" id="method">
+    <option value="RIGHT">RIGHT</option>
+    <option value="LEFT">LEFT</option>
+    <option value="MIDPOINT">MIDPOINT</option>
+
+  </select>
+  <br> 
+</form>
+
+</p>
+
+
+<!-- BUTTON TO RUN JS FUNCTION -->
+<button onclick="compute()">CALCULATE!</button>
+
+ <!-- WRITE TO SCREEN -->
+<p id="OUT"></p>
+
+
+<script>
+ 
+
+ function compute() {
+
+
+  function f(x) {return (3*x*x+4*x);}
+  function F(x) {return (Math.pow(x, 3)+2*x*x);}
+
+  // EXACT SOLUTION
+
+  //GET NUMBERS FROM HTML AND CONVERT TO FLOATS
+  let A = parseFloat(document.getElementById("A").value);
+  let B = parseFloat(document.getElementById("B").value);
+  let Nr = parseFloat(document.getElementById("N").value);
+  let method = document.getElementById("method").value;
+
+  let out=F(B)-F(A)
+  out = "EXACT : "+(out).toString();
+
+  //DEFINE DEFAULT 
+
+  //APPROXIMATE
+  let S=0. ; 
+  let dx=(B-A)/(Nr)
+
+  //SWITCH TO DEFAULT IF INCORRECT OPTION PROVIDED
+  if(method!="LEFT" && method !="RIGHT" && method !="MIDPOINT" ){method="MIDPOINT";}
+
+  //DEFINE LIMITS
+  if(method=="LEFT" || method=="MIDPOINT")  {i_0=0; i_f=Nr-1;}
+  if(method=="RIGHT") {i_0=1; i_f=Nr;}
+
+  //COMPUTE INTEGRAL 
+  for (let i = i_0; i <= i_f; i++) 
+  {
+    if(method=="LEFT"|| method =="RIGHT"){S = S + f(A+dx*i)*dx;}
+    if(method=="MIDPOINT"){S = S + f(A+dx*i+dx/2.)*dx;}
+  }
+
+  out = out+"<br><br> APPROXIMATION METHOD : "+method+"<br><br> RESULT: "
+  out = out+S.toString();
+
+  //COMPUTE SUM, CONVERT TO FLOTS, OUTPUT 
+  document.getElementById("OUT").innerHTML = out
+
+}
+// function myFunction() {
+
+//   //GET NUMBERS FROM HTML AND CONVERT TO FLOATS
+//   var A = parseFloat(document.getElementById("A").value);
+//   var B = parseFloat(document.getElementById("B").value);
+
+//   //COMPUTE SUM, CONVERT TO FLOTS, OUTPUT 
+//   document.getElementById("C").innerHTML = "OUTPUT : "+(A+B).toString();
+
+</script>
+</body>
+</html>
+

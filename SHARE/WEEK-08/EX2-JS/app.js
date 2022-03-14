@@ -20,45 +20,37 @@
 // PRIMITIVE TYPES
 // string,number,boolean, unidentified, null
 
-
-
 // OLD WAY
- var MyVar1="test1";
+var MyVar1="test1";
 
- //dynamic types
- text=typeof MyVar1
-console.log(text);
+//dynamic types
+// text=typeof MyVar1
+console.log(typeof MyVar1);
 MyVar1=4
 console.log(typeof MyVar1);
 
 // RECOMMENDED  (vars )
- let my_var2="test2";
+let my_var2="test2";
 
 // statement (action)
 console.log("Hello world --> ",MyVar1,my_var2);
 
-// // RE-DEFINE 
-// delete my_var2
-// const my_var2=3
-// console.log("Hello world --> ",my_var2);
-
 //CONTSANTS  (CANT CHANGE, WILL THROW ERROR)
- const my_cnst=4.0;
+const my_cnst=4.0;
 console.log("my_cnst",my_cnst);
-
-
+// my_cnst=5.
 
 //ARRAY-1
-var userColors = ['red','green']
+let userColors = ['red','green']
 console.log(userColors)
 console.log(userColors[0])
 userColors[2]='blue'  //add values to end 
 console.log(userColors)
 
 
+
+
 //FUNCTINOS
-
-
 function myFunction(a, b) 
 {
     // Jargon
@@ -77,22 +69,6 @@ console.log(x);
 
 
 
-// function myFunc(theObject) {
-//   theObject.make = 'Toyota';
-// }
-
-// var mycar = {make: 'Honda', model: 'Accord', year: 1998};
-// var x, y;
-
-// x = mycar.make; // x gets the value "Honda"
-
-// myFunc(mycar);
-// y = mycar.make; // y gets the value "Toyota"
-//                 // (the make property was changed by the function)
-
-
-throw ''; 
-
 //ARRAY-2
 var my_array=[];
 my_array[0]=10;
@@ -100,6 +76,9 @@ my_array[1]=20;
 my_array[2]=30;
 console.log(my_array)
 console.log("length =",my_array.length)
+
+
+
 
 //OBJECT (similar to a python dictionary)
 let person = {
@@ -111,16 +90,13 @@ person['age']=10
 
 console.log(person)
 
-// OVERWRITE ATTRIBUTE
+// // OVERWRITE ATTRIBUTE
 person.name="jack"
 
 let selection='name'
 console.log("name-1:",person.name)
 console.log("name-2:",person[selection])
-
-throw '';
-
-person['name']
+console.log("name-3:",person['name'])
 
 
 //------------------- 
@@ -144,15 +120,11 @@ for (const j in my_array)
   console.log("j : ",j,my_array[j]);
 }
 
-
-
 // FOR/OF - LOOPS THROUGH THE VALUES OF AN ITERABLE OBJECT
 for (var j of my_array) 
 {
   console.log("j = ",j);
 }
-
-
 
 //FOR LOOP EXAMPLE-2
 for (let i = 0; i < 5; i++) 
@@ -161,7 +133,6 @@ for (let i = 0; i < 5; i++)
   console.log(text)
 
 }
-
 
 //FOR IN LOOP EXAMPLE-1
 const object = { a: 1, b: 2, c: 3 };
@@ -179,8 +150,6 @@ while ( i < 10) {
   i++;
 }
 
-
-
  // DO WHILE LOOP: 
  // VARIANT OF THE WHILE LOOP. THIS LOOP WILL 
  // EXECUTE THE CODE BLOCK ONCE, BEFORE CHECKING IF THE CONDITION 
@@ -193,5 +162,29 @@ do {
   i++;
 }
 while (i < 10);
+
+
+
+
+
+
+
+
+
+// function myFunc(theObject) {
+//   theObject.make = 'Toyota';
+// }
+
+// var mycar = {make: 'Honda', model: 'Accord', year: 1998};
+// var x, y;
+
+// x = mycar.make; // x gets the value "Honda"
+
+// myFunc(mycar);
+// y = mycar.make; // y gets the value "Toyota"
+//                 // (the make property was changed by the function)
+
+
+
 
 

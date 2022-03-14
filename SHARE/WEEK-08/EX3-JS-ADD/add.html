@@ -1,0 +1,46 @@
+<!-- MODIFIED FROM: https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_number_value2 -->
+
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<!-- INITIAL TEXT -->
+<p>
+
+  <strong>Enter numbers to add:</strong>   <br><br>
+
+  A: <input type="text" id="A"  value="2">   <br>
+
+  B: <input type="text" id="B" value="2">  <br> <br>
+
+  Click the button to add the numbers!
+
+</p>
+
+<!-- BUTTON TO RUN JS FUNCTION -->
+<button onclick="myFunction()">CALCULATE!</button>
+
+ <!-- WRITE TO SCREEN -->
+<p id="C"></p>
+
+<!-- JAVA SCRIPT -->
+<script>
+
+function myFunction() {
+
+  //GET NUMBERS FROM HTML AND CONVERT TO FLOATS
+  var A = parseFloat(document.getElementById("A").value);
+  var B = parseFloat(document.getElementById("B").value);
+
+  //COMPUTE SUM, CONVERT TO FLOTS, OUTPUT 
+  document.getElementById("C").innerHTML = "OUTPUT : "+(A+B).toString();
+
+}
+</script>
+
+</body>
+</html>
+
+
+<!-- <p><strong>Note:</strong> input elements with type="number" are not supported in IE 9 and earlier versions.</p> -->
