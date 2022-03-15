@@ -21,36 +21,37 @@
 // string,number,boolean, unidentified, null
 
 // OLD WAY
-var MyVar1="test1";
+let MyVar1="test1";
 
 //dynamic types
 // text=typeof MyVar1
+console.log(MyVar1);
 console.log(typeof MyVar1);
-MyVar1=4
+MyVar1 = 4
 console.log(typeof MyVar1);
+console.log(MyVar1);
 
-// RECOMMENDED  (vars )
+// RECOMMENDED  (let )
 let my_var2="test2";
 
 // statement (action)
 console.log("Hello world --> ",MyVar1,my_var2);
 
 //CONTSANTS  (CANT CHANGE, WILL THROW ERROR)
-const my_cnst=4.0;
+const my_cnst=true;
 console.log("my_cnst",my_cnst);
 // my_cnst=5.
 
 //ARRAY-1
+// let userColors = []
 let userColors = ['red','green']
 console.log(userColors)
 console.log(userColors[0])
-userColors[2]='blue'  //add values to end 
-console.log(userColors)
+userColors[2]='blue'  //add values to end
+userColors[3]='black'  //add values to end 
+console.log(userColors[3])
 
-
-
-
-//FUNCTINOS
+//FUNCTIONS
 function myFunction(a, b) 
 {
     // Jargon
@@ -59,7 +60,7 @@ function myFunction(a, b)
 
     // scope of a and b is only inside function
 
-  console.log(a,b);
+  console.log("here",a,b);
 
   return a * b;             // Function returns the product of a and b
 }
@@ -67,28 +68,26 @@ function myFunction(a, b)
 let x = myFunction(4, 3);   // Function is called, return value will end up in x
 console.log(x);
 
-
-
 //ARRAY-2
-var my_array=[];
-my_array[0]=10;
-my_array[1]=20;
-my_array[2]=30;
-console.log(my_array)
-console.log("length =",my_array.length)
-
-
-
+var my_array1=[];
+my_array1[0]=10;
+my_array1[1]='string';
+my_array1[2]=true;
+console.log(my_array1,my_array1.length)
+console.log("length =",my_array1.length)
 
 //OBJECT (similar to a python dictionary)
 let person = {
     name : "james"
+    //age  :  null 
 }
 
-//ADD NEW ATTRIBUTE 
+// //ADD NEW ATTRIBUTE 
 person['age']=10
 
 console.log(person)
+console.log(person.name)
+console.log(person['name'])
 
 // // OVERWRITE ATTRIBUTE
 person.name="jack"
@@ -98,24 +97,29 @@ console.log("name-1:",person.name)
 console.log("name-2:",person[selection])
 console.log("name-3:",person['name'])
 
-
 //------------------- 
 //LOOPS
 //-------------------
 
 //FOR LOOP EXAMPLE-1
-var my_array=[];
+let my_array=[];
 my_array[0]='X';
 my_array[1]='Y';
 my_array[2]='Z';
 
-for (let i = 0; i < my_array.length; i++) 
+for(let i = 0; i < my_array.length; i++) 
 {
   console.log(i,my_array[i])
 }
 
 // for/in - loops through the properties of an object
-for (const j in my_array) 
+for(let j in person) 
+{
+  console.log("j : ",j,person[j]);
+}
+
+// for/in - loops through the properties of an object
+for(let j in my_array) 
 {
   console.log("j : ",j,my_array[j]);
 }
@@ -134,7 +138,7 @@ for (let i = 0; i < 5; i++)
 
 }
 
-//FOR IN LOOP EXAMPLE-1
+// //FOR IN LOOP EXAMPLE-1
 const object = { a: 1, b: 2, c: 3 };
 
 for (const property in object) 
@@ -157,7 +161,7 @@ while ( i < 10) {
 
 i=1
 do {
-  text = "NUMBER= " + i;
+  text = "HERE NUMBER= " + i;
   console.log(text)
   i++;
 }
@@ -169,20 +173,18 @@ while (i < 10);
 
 
 
+// // function myFunc(theObject) {
+// //   theObject.make = 'Toyota';
+// // }
 
+// // var mycar = {make: 'Honda', model: 'Accord', year: 1998};
+// // var x, y;
 
-// function myFunc(theObject) {
-//   theObject.make = 'Toyota';
-// }
+// // x = mycar.make; // x gets the value "Honda"
 
-// var mycar = {make: 'Honda', model: 'Accord', year: 1998};
-// var x, y;
-
-// x = mycar.make; // x gets the value "Honda"
-
-// myFunc(mycar);
-// y = mycar.make; // y gets the value "Toyota"
-//                 // (the make property was changed by the function)
+// // myFunc(mycar);
+// // y = mycar.make; // y gets the value "Toyota"
+// //                 // (the make property was changed by the function)
 
 
 

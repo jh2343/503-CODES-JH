@@ -21,9 +21,6 @@
 <!-- BUTTON TO RUN JS FUNCTION -->
 <button onclick="myFunction()">CALCULATE!</button>
 
- <!-- WRITE TO SCREEN -->
-<p id="C"></p>
-
 <!-- JAVA SCRIPT -->
 <script>
 
@@ -33,11 +30,14 @@ function myFunction() {
   var A = parseFloat(document.getElementById("A").value);
   var B = parseFloat(document.getElementById("B").value);
 
-  //COMPUTE SUM, CONVERT TO FLOTS, OUTPUT 
+  //COMPUTE SUM, CONVERT TO FLOATS, OUTPUT 
   document.getElementById("C").innerHTML = "OUTPUT : "+(A+B).toString();
 
 }
 </script>
+
+ <!-- WRITE TO SCREEN -->
+<p id="C"></p>
 
 </body>
 </html>
