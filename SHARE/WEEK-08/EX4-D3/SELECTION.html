@@ -1,0 +1,46 @@
+
+<!-- MODIFIED FROM: https://www.tutorialspoint.com/d3js/d3js_selections.htm -->
+<!DOCTYPE html>
+<html>
+   <head>
+      <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
+   </head>
+
+   <body>
+      <h2  id="header2" class = "myclass">Message</h2>
+      <div id="div1"    class = "myclass">
+         A: Hello World!
+      </div>
+
+      <div id="div2"    class = "myclass">
+         B: Hello world!
+      </div>
+
+      <br> 
+      <!-- BUTTON TO RUN JS FUNCTION -->
+      <button onclick="iterate()">RUN D3!!</button>
+
+
+      <script>
+         let k=0
+         function iterate() {
+
+         if(k==0){d3.select("#header2").attr("style", "color: blue")}
+         if(k==1){d3.selectAll("div").html("Hello World! <span>from D3.js!!</span>")}
+         if(k==2){d3.select(".myclass").attr("style", "color: red")}
+         if(k==3){d3.selectAll(".myclass").attr("style", "color: blue")}
+
+         k=k+1
+
+         }
+         // ;
+         // d3.select("#div1").html("Hello World! <span>from D3.js!!</span>").attr("style", "color: blue");
+         // d3.select("div.myclass").append("span").text("from D3.js");
+         // d3.select(".myclass").html("Hello World! <span>from D3.js</span>");
+         // d3.select(".myclass").attr("style", "color: red");
+         // d3.select(".myclass").style("color", "blue");
+         // 
+
+      </script>
+   </body>
+</html>

@@ -1,0 +1,42 @@
+<html>
+   <head>
+      <!-- IMPORT D3 -->
+      <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
+   </head>
+
+   <body>
+
+      <!-- RUN FUNCTION run3D WHEN BUTTON IS CLICKED -->
+      <button onclick="runD3()">RUN D3!!</button>
+      <br> 
+
+      <!-- INITIALIZE OBJECTS -->
+       <svg  height="1000" width="1000">
+        <circle id="sun"   cx="250" cy="250" r="50" stroke="black" stroke-width="3" fill="yellow" />
+      </svg>
+
+
+      <!-- JAVA SCRIPT -->
+      <script>
+
+         k=0
+         function runD3()
+               {
+              
+            if(k%2==0)
+            {
+            //UDATE SVG POSITIONS 
+            d3.selectAll("#sun").attr("cx", 500).attr("cy", 500).attr("fill", "black").attr("stroke", "yellow");
+            }
+            else
+            {
+            d3.selectAll("#sun").attr("cx", 250).attr("cy", 250).attr("fill", "yellow").attr("stroke", "black") ;
+            }
+            k=k+1;
+            }
+
+
+      </script>
+
+   </body>
+</html>

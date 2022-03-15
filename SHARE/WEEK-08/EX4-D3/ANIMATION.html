@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
+   </head>
+
+   <body>
+      <h3> Simple transitions </h3>
+      <script>
+
+         // let period=2000   // 2000 ms = 2 s
+         // let every=3000
+         d3.selectAll("h3").transition()
+            .style("font-size","28px").delay(3000).duration(2000);
+
+         d3.selectAll("h3").transition()
+            .style("font-size","12px").delay(3000+2000).duration(2000);
+
+         d3.selectAll("h3").transition()
+         .style("font-size","24px").delay(5000+2000).duration(2000);         
+      </script>
+   </body>
+</html>

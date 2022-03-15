@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <head>
+      <title>SVG rectangle</title>
+      <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
+      <style>
+         body { font-family: Arial; }
+      </style>
+   </head>
+
+   <body>
+      <div id = "svgcontainer"></div>
+
+      <script language = "javascript">
+         var width = 300;
+         var height = 300;
+         var svg = d3.select("#svgcontainer")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+         var group = svg.append("g")
+            .attr("transform", "translate(60, 60) rotate(30)");
+         
+         var rect = group.append("rect")
+            .attr("x", 20)
+            .attr("y", 20)
+            .attr("width", 60)
+            .attr("height", 60)
+            .attr("fill", "green")
+         
+         var circle = group
+            .append("circle")
+            .attr("cx", 0)
+            .attr("cy", 0)
+            .attr("r", 30)
+            .attr("fill", "red")
+      </script>
+
+      </div>
+   </body>
+</html>

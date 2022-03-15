@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
+   </head>
+
+   <body>
+      <h3>Simple transitions</h3>
+
+      <button onclick="runD3()">RUN D3!!</button>
+      <br> 
+
+      <script>
+         let k=0
+         function runD3(){
+
+
+            if(k%2==0)
+            {
+               
+            d3.select("body")
+            .transition()
+            .style("background-color", "lightblue")
+            .duration(2000);
+            }
+
+            else
+            {
+            d3.select("body")
+            .transition()
+            .duration(2000)
+            .style("background-color", "white");
+            }
+            k=k+1;
+
+
+         }
+      </script>
+   </body>
+</html>
