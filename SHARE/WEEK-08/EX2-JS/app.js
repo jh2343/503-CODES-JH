@@ -12,16 +12,16 @@
 // use meaningful names, no space/hypens, use camel case,
 // case sensitive, can't be reserved JS keywords 
 
- 
+
 //------------------- 
 //DATA TYPES 
 //-------------------
 
-// PRIMITIVE TYPES
-// string,number,boolean, unidentified, null
+// // PRIMITIVE TYPES
+// // string,number,boolean, unidentified, null
 
 // OLD WAY
-let MyVar1="test1";
+var MyVar1="TEST";
 
 //dynamic types
 // text=typeof MyVar1
@@ -31,24 +31,25 @@ MyVar1 = 4
 console.log(typeof MyVar1);
 console.log(MyVar1);
 
-// RECOMMENDED  (let )
+// // RECOMMENDED  (let )
 let my_var2="test2";
 
-// statement (action)
+// // statement (action)
 console.log("Hello world --> ",MyVar1,my_var2);
 
-//CONTSANTS  (CANT CHANGE, WILL THROW ERROR)
+// //CONTSANTS  (CANT CHANGE, WILL THROW ERROR)
 const my_cnst=true;
 console.log("my_cnst",my_cnst);
 // my_cnst=5.
 
-//ARRAY-1
+// //ARRAY-1
 // let userColors = []
 let userColors = ['red','green']
 console.log(userColors)
 console.log(userColors[0])
 userColors[2]='blue'  //add values to end
 userColors[3]='black'  //add values to end 
+console.log(userColors)
 console.log(userColors[3])
 
 //FUNCTIONS
@@ -82,14 +83,14 @@ let person = {
     //age  :  null 
 }
 
-// //ADD NEW ATTRIBUTE 
+// // //ADD NEW ATTRIBUTE 
 person['age']=10
 
 console.log(person)
 console.log(person.name)
 console.log(person['name'])
 
-// // OVERWRITE ATTRIBUTE
+//OVERWRITE ATTRIBUTE
 person.name="jack"
 
 let selection='name'
@@ -97,9 +98,9 @@ console.log("name-1:",person.name)
 console.log("name-2:",person[selection])
 console.log("name-3:",person['name'])
 
-//------------------- 
-//LOOPS
-//-------------------
+// //------------------- 
+// //LOOPS
+// //-------------------
 
 //FOR LOOP EXAMPLE-1
 let my_array=[];
@@ -113,21 +114,22 @@ for(let i = 0; i < my_array.length; i++)
 }
 
 // for/in - loops through the properties of an object
-for(let j in person) 
-{
-  console.log("j : ",j,person[j]);
-}
-
-// for/in - loops through the properties of an object
 for(let j in my_array) 
 {
-  console.log("j : ",j,my_array[j]);
+  console.log("j : ",j);
 }
 
 // FOR/OF - LOOPS THROUGH THE VALUES OF AN ITERABLE OBJECT
 for (var j of my_array) 
 {
   console.log("j = ",j);
+}
+
+console.log(person);
+// for/in - loops through the properties of an object
+for(let j in person) 
+{
+  console.log("j : ",j,person[j]);
 }
 
 //FOR LOOP EXAMPLE-2
@@ -137,14 +139,7 @@ for (let i = 0; i < 5; i++)
   console.log(text)
 
 }
-
-// //FOR IN LOOP EXAMPLE-1
-const object = { a: 1, b: 2, c: 3 };
-
-for (const property in object) 
-{
-  console.log(`${property}: ${object[property]}`);
-}
+//let person=5
 
 
 // WHILE LOOP
@@ -154,39 +149,45 @@ while ( i < 10) {
   i++;
 }
 
- // DO WHILE LOOP: 
- // VARIANT OF THE WHILE LOOP. THIS LOOP WILL 
- // EXECUTE THE CODE BLOCK ONCE, BEFORE CHECKING IF THE CONDITION 
- // IS TRUE, THEN IT WILL REPEAT THE LOOP AS LONG AS THE CONDITION IS TRUE.
+//  // DO WHILE LOOP: 
+//  // VARIANT OF THE WHILE LOOP. THIS LOOP WILL 
+//  // EXECUTE THE CODE BLOCK ONCE, BEFORE CHECKING IF THE CONDITION 
+//  // IS TRUE, THEN IT WILL REPEAT THE LOOP AS LONG AS THE CONDITION IS TRUE.
 
-i=1
-do {
-  text = "HERE NUMBER= " + i;
-  console.log(text)
-  i++;
-}
-while (i < 10);
-
-
+// i=1
+// do {
+//   text = "HERE NUMBER= " + i;
+//   console.log(text)
+//   i++;
+// }
+// while (i < 10);
 
 
 
 
 
-// // function myFunc(theObject) {
-// //   theObject.make = 'Toyota';
-// // }
-
-// // var mycar = {make: 'Honda', model: 'Accord', year: 1998};
-// // var x, y;
-
-// // x = mycar.make; // x gets the value "Honda"
-
-// // myFunc(mycar);
-// // y = mycar.make; // y gets the value "Toyota"
-// //                 // (the make property was changed by the function)
 
 
+// // // function myFunc(theObject) {
+// // //   theObject.make = 'Toyota';
+// // // }
 
+// // // var mycar = {make: 'Honda', model: 'Accord', year: 1998};
+// // // var x, y;
+
+// // // x = mycar.make; // x gets the value "Honda"
+
+// // // myFunc(mycar);
+// // // y = mycar.make; // y gets the value "Toyota"
+// // //                 // (the make property was changed by the function)
+
+
+// // //FOR IN LOOP EXAMPLE-1
+// const object = { a: 1, b: 2, c: 3 };
+
+// for (const property in object) 
+// {
+//   console.log(`${property}: ${object[property]}`);
+// }
 
 

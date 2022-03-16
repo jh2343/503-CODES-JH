@@ -17,6 +17,7 @@
       </div>
 
       <br> 
+
       <!-- BUTTON TO RUN JS FUNCTION -->
       <button onclick="iterate()">RUN D3!!</button>
 
@@ -26,9 +27,11 @@
          function iterate() {
 
          if(k==0){d3.select("#header2").attr("style", "color: blue")}
+         if(k==0){d3.select("div").html("TEST")}
+
          if(k==1){d3.selectAll("div").html("Hello World! <span>from D3.js!!</span>")}
          if(k==2){d3.select(".myclass").attr("style", "color: red")}
-         if(k==3){d3.selectAll(".myclass").attr("style", "color: blue")}
+         if(k==3){d3.selectAll(".myclass").attr("style", "color: blue"); k=0}
 
          k=k+1
 

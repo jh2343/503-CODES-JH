@@ -1,0 +1,79 @@
+<html>
+   <head>
+      <!-- IMPORT D3 -->
+      <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
+   </head>
+
+   <body>
+
+      <!-- RUN FUNCTION run3D WHEN BUTTON IS CLICKED -->
+      <button onclick="runD3()">RUN D3!!</button>
+      <br> 
+
+      <!-- INITIALIZE OBJECTS -->
+       <svg  height="1000" width="1000">
+        <circle id="sun"   cx="250" cy="250" r="50" stroke="black" stroke-width="3" fill="yellow" />
+
+        <circle id="venus" cx="350" cy="250" r="10" stroke="black" stroke-width="3" fill="green" />
+
+        <circle id="earth" cx="450" cy="250" r="20" stroke="black" stroke-width="3" fill="blue" />
+
+        <circle id="moon"  cx="500" cy="250" r="5" stroke="black" stroke-width="3" fill="black" />
+
+      </svg>
+
+
+      <!-- JAVA SCRIPT -->
+      <script>
+
+         //DEFINE SLEEP FUNCTION
+         function sleep(ms) {
+             return new Promise(resolve => setTimeout(resolve, ms));
+         }
+
+         //LOOP OVER TIME TO SIMULATE ORBITAL DYNAMICS
+         async function runD3()
+               {
+               //INITIALIZE PARAM
+               let t=0;
+               let N=1000;
+               let T1=365   //earth orbitial period in days
+               let T2=222   //venus orbitial period in days
+               let T3=30    //moon orbitial period in days
+               let dt=T1/N  //timestep (days)
+
+               //Random radius to make simulation "look pretty"
+               let R1=200
+               let R2=100
+               let R3=40
+
+               for (let i = 0 ; i <= 2*N; i++) 
+               {
+
+                  //DEFINE POSITIONS 
+                  t=i*dt
+                  x1=250+R1*Math.cos(2*3.1415*t/T1)
+                  y1=250+R1*Math.sin(2*3.1415*t/T1)
+
+                  x2=250+R2*Math.cos(2*3.1415*t/T2)
+                  y2=250+R2*Math.sin(2*3.1415*t/T2)
+
+                  x3=x1+R3*Math.cos(2*3.1415*t/T3)
+                  y3=y1+R3*Math.sin(2*3.1415*t/T3)
+
+
+                  //UPDATE SVG POSITIONS 
+                  console.log(i,t,x1,y1)
+                  d3.selectAll("#earth").attr("cx", x1).attr("cy", y1);
+                  d3.selectAll("#venus").attr("cx", x2).attr("cy", y2);
+                  d3.selectAll("#moon").attr("cx", x3).attr("cy", y3);
+
+                  await sleep(10);
+               }
+
+              }
+
+      </script>
+
+   </body>
+</html>
