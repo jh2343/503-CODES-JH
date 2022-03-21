@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang = "en">
+   <head>
+      <meta charset = "UTF-8">
+      <script src="https://cdn.plot.ly/plotly-2.9.0.min.js"></script>
+   </head>
+
+   <body>
+ 
+   	<h2> PLOTLY.JS EXAMPLES: </h2> 
+
+		<div id="myPlot" style="width:600px;height:400px;"></div>
+
+		<script>
+
+		  // Define Data
+	     let data = [{
+	             x:[1, 2, 3, 4, 5],
+	             y:[1, 2, 4, 8, 16],
+	             mode: "markers", //"lines"
+	             type: "scatter"
+	     }];
+
+			Plotly.newPlot("myPlot", data);
+
+		</script>
+
+   </body>
+</html>

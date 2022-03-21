@@ -1,0 +1,80 @@
+<!-- MODIFIED FROM: 
+	https://www.w3schools.com/js/js_graphics_plotly.asp 
+	https://plotly.com/javascript/box-plots/
+-->
+
+<!DOCTYPE html>
+<html lang = "en">
+   <head>
+      <meta charset = "UTF-8">
+  		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   </head>
+
+   <body>
+ 
+   	<h2> CHART.JS EXAMPLES: </h2> 
+
+		<form action="/action_page.php">
+		    <label for="method">CHOOSE PLOT TYPE:</label>
+		    <select name="method" id="method">
+		    <option value="plot-1">LINE-1</option>
+
+		  </select>
+		</form>
+
+		  <br> 
+
+		<button onclick="render()">RENDER PLOT!</button>
+
+		<div>
+		  <canvas id="myChart"  style="position: relative; height:20vh; width:40vw"></canvas>
+		</div>
+
+		<script>
+
+			function render() 
+			{
+
+			let method = document.getElementById("method").value;
+
+
+			if(method=="plot-1")  
+			{
+
+
+			  const labels = [
+			    'January',
+			    'February',
+			    'March',
+			    'April',
+			    'May',
+			    'June',
+			  ];
+
+			  const data = {
+			    labels: labels,
+			    datasets: [{
+			      label: 'My First dataset',
+			      backgroundColor: 'rgb(255, 99, 132)',
+			      borderColor: 'rgb(255, 99, 132)',
+			      data: [0, 10, 5, 2, 20, 30, 45],
+			    }]
+			  };
+
+			  const config = {
+			    type: 'line',
+			    data: data,
+			    options: {}
+			  };
+
+			  const myChart = new Chart(
+			    document.getElementById('myChart'),
+			    config
+			  );
+
+			}
+
+			}
+		</script>
+   </body>
+</html>

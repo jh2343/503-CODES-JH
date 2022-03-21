@@ -1,0 +1,79 @@
+<!-- MODIFIED FROM: 
+	https://www.w3schools.com/js/js_graphics_plotly.asp 
+	https://plotly.com/javascript/box-plots/
+-->
+
+<!DOCTYPE html>
+<html lang = "en">
+   <head>
+      <meta charset = "UTF-8">
+      <script src="https://cdn.plot.ly/plotly-2.9.0.min.js"></script>
+   </head>
+
+   <body>
+ 
+   	<h2> PLOTLY.JS EXAMPLES: </h2> 
+
+		<form action="/action_page.php">
+		    <label for="method">CHOOSE PLOT TYPE:</label>
+		    <select name="method" id="method">
+		    <option value="plot-1">SCATTERPLOT-1</option>
+		    <option value="plot-2">SCATTERPLOT-2</option>
+
+		  </select>
+		</form>
+
+		  <br> 
+
+		<button onclick="render()">RENDER PLOT!</button>
+
+		<div id="myPlot" style="width:600px;height:400px;"></div>
+
+		<script>
+
+			function render() 
+			{
+
+			let method = document.getElementById("method").value;
+
+
+			if(method=="plot-1")  
+			{
+	
+			  // Define Data
+		     let data = [{
+		             x:[1, 2, 3, 4, 5],
+		             y:[1, 2, 4, 8, 16],
+		             mode: "markers", //"lines"
+		             type: "scatter"
+		     }];
+
+				Plotly.newPlot("myPlot", data);
+
+			}
+
+			if(method=="plot-2")  
+			{
+
+		    var xArray = [50,60,70,80,90,100,110,120,130,140,150];
+		    var yArray = [7,8,8,9,9,9,10,11,14,14,15];
+
+		     var data = [{
+		             x:xArray,
+		             y:yArray,
+		             mode: "markers", //"lines"
+		             type: "scatter"
+		     }];
+
+		     var layout = {
+		       xaxis: {range: [40, 160], title: "Square Meters"},
+		       yaxis: {range: [5, 16], title: "Price in Millions"},
+		       title: "House Prices vs. Size"
+		     };
+		     Plotly.newPlot("myPlot", data, layout);
+				}
+
+			}
+		</script>
+   </body>
+</html>
