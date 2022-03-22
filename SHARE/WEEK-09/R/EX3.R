@@ -15,16 +15,20 @@ theme_set(hrbrthemes::theme_ipsum())
 
 a  =  ggplot(d[d$z==1,],  aes(x,y))+
       geom_point(color='blue')
+plot(a)
 
 b  =  ggplot(d[d$z==-1,],  aes(x,y))  +  
 	  geom_point(color='red')
+plot(b)
 
-e  =  ggplot() +
+c  =  ggplot() +
 	  geom_point(data=d[d$z==1,],  aes(x,y),  color='blue') + 
 	  geom_point(data  =  d[d$z==-1,],  aes(x,y),  color='red')
+plot(c)
 
-f  =  ggplot()  +  
+d  =  ggplot()  +  
       geom_point(data  =  d[d$z==-1,],  aes(x,y),  color='red')  +
 	  geom_point(data=d[d$z==1,],  aes(x,y),  color='blue')
+plot(d)
 
-plot_grid(a,b,e,f,  labels  =  c('A',"B",'C',  'D'))
+# plot_grid(a,b,e,f,  labels  =  c('A',"B",'C',  'D'))

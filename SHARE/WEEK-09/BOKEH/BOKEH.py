@@ -9,7 +9,7 @@ example = ""
 # example = "BOKEH:HISTOGRAM-1"
 # example = "BOKEH:LINEPLOT"
 # example = "BOKEH:SLIDER"
-example = "BOKEH:BASIC"
+# example = "BOKEH:BASIC"
 
 # ---------------------------------
 # BOKEH
@@ -23,6 +23,7 @@ if example == "BOKEH:BASIC":
     from bokeh.sampledata.sample_geojson import geojson
 
     geo_source = GeoJSONDataSource(geojson=geojson)
+    print(geo_source)
     fig = figure()
     fig.circle(
         x="x",
@@ -67,7 +68,7 @@ if example == "BOKEH:LINEPLOT":
     # Show the results
     show(myPlot2)
 
-# example = "BOKEH:SLIDER"
+example = "BOKEH:SLIDER"
 if example == "BOKEH:SLIDER":
 
     from bokeh.layouts import layout
