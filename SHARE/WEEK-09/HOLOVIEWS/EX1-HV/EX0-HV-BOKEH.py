@@ -46,8 +46,9 @@ D = {
 
 # SCATTER-1
 hv1 = hv.Scatter(D, "x1", "y1")
-print(hv1, type(hv1))
+# print(hv1, type(hv1))
 hv.save(hv1, "SCATTER-1.html")  # RENDER+SAVE
+# hv.save(hv1, "HV.html")  # RENDER+SAVE
 
 
 # CUSTOMIZE
@@ -55,8 +56,8 @@ hv.save(hv1, "SCATTER-1.html")  # RENDER+SAVE
 hv1 = hv.Scatter(D, "x1", "y1")
 hv1 = hv1.opts(
 			  color="blue",
-			  alpha=1,
-			  size=1,
+			  alpha=0.1,
+			  size=3,
 			  title="Scatter",
 			  bgcolor='white',
 			  width=500, 
@@ -67,6 +68,7 @@ hv1 = hv1.opts(
 			  )
 
 hv.save(hv1, "SCATTER-2.html")  # RENDER+SAVE
+# hv.save(hv1, "HV.html")  # RENDER+SAVE
 
 # COMBINE
 hv1 = hv.Scatter(D, "x1", "y1").opts(color="red")
@@ -74,14 +76,17 @@ hv2 = hv.Scatter(D, "x2", "y2").opts(color="red")
 hv3 = hv.Scatter(D, "x3", "y3").opts(color="red")
 hv4 = hv.Scatter(D, "x4", "y4").opts(color="red")
 out = hv1 * hv2 * hv3 * hv4
+# out = hv1 + hv2 + hv3 + hv4
 hv.save(out, "SCATTER-3.html")  # RENDER+SAVE
 
+# exit()
 # COMBINE
 hv1 = hv.Scatter(D, "x1", "y1") #.opts(color="blue")
 hv2 = hv.Scatter(D, "x2", "y2") #.opts(color="red")
 hv3 = hv.Scatter(D, "x3", "y3") #.opts(color="green")
 hv4 = hv.Scatter(D, "x4", "y4") #.opts(color="black")
-out = hv1 * hv2 * hv3 * hv4
+# out = hv1 * hv2 * hv3 * hv4
+out = hv1 + hv2 + hv3 + hv4
 hv.save(out, "SCATTER-4.html")  # RENDER+SAVE
 
 
