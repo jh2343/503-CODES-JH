@@ -3,7 +3,6 @@
 
 EXAMPLE=""
 
-
 # EXAMPLE="NX_TO_PYVIS_1"
 if(EXAMPLE=="NX_TO_PYVIS_1"):
 	from pyvis.network import Network
@@ -29,7 +28,7 @@ if(EXAMPLE=="NX_TO_PYVIS_1"):
 	# populates the nodes and edges data structures
 	nt.from_nx(nx_graph)
 	nt.show('nx.html')
-	#exit()
+	exit()
 
 EXAMPLE="NX_TO_PYVIS_2"
 if(EXAMPLE=="NX_TO_PYVIS_2"):
